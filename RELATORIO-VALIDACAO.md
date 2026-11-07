@@ -10,7 +10,7 @@ A proposta passou por revisão de tipografia, composição, copy, imagens, naveg
 - Chamadas passam a ser links textuais, sem setas, molduras ou ícones isolados. Ações de interface preservam a semântica correta de botão, com apresentação de link: menu, submissão de formulário, medição e alternância das fotos.
 - Serviços em linhas de escopo; numeração apenas na sequência de trabalho. Foram retirados índices decorativos, ícones genéricos, entradas de animação repetidas e o fechamento de três slogans.
 - Cabeçalho identifica “Proposta conceitual”. Rodapé apresenta o crédito “Desenvolvido pela Guia-se Botafogo”, com link para https://botafogo.guiaserj.com.br/sites.
-- O desenho da abertura possui legenda descritiva e informa seu caráter conceitual. Os desenhos associados aos nomes de empreendimentos foram removidos para não sugerir representação de projetos reais.
+- O desenho da abertura possui legenda descritiva e informa seu caráter conceitual. Os SVGs da experiência foram preservados, com legendas de ilustração conceitual dos setores e nota que os distingue de desenhos dos empreendimentos reais.
 - Legendas das fotos identificam os respectivos sócios. A colorização conceitual está informada junto à seção.
 - Fotos: hover no mouse; toque/clique alterna a cor, e Enter/Espaço operam o controle. Estado e nome acessíveis são atualizados. A cor é uma camada sobre os originais monocromáticos, preservando sua luminosidade e detalhes. Prompt e caminhos em `docs/COLORIZACAO.md`.
 - A imagem social e a página 404 acompanham o novo tratamento tipográfico; não há setas decorativas nelas.

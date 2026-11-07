@@ -9,7 +9,7 @@ A comparação foi feita com a página publicada, o logo e os conteúdos profiss
 - Preto da marca `#0B1517`; dourado `#F3CC51` para sinalização; branco `#FFFFFF` para leitura; cinza claro `#EEF0EF` para superfícies; cinza de texto `#52615C`; divisórias `#D5DAD7`.
 - Archivo variável, hospedada localmente: 600 nos títulos, 400 na leitura e 500 nos links. As letras sem serifa, abertas e com presença mais técnica acompanham melhor o logo. Sugestão tipográfica da proposta, sujeita à aprovação da marca.
 - Conteúdo alinhado à esquerda, títulos sem palavra isolada em dourado. Limite de leitura em torno de 65 caracteres. Corpo de 15–17 px, rótulos de 12–14 px.
-- Serviços em linhas de escopo, não uma coleção de cartões. Numeração apenas nas etapas que formam uma sequência. Experiência apresentada como texto, sem associar desenhos inventados a obras reais.
+- Serviços em linhas de escopo, não uma coleção de cartões. Numeração apenas nas etapas que formam uma sequência. Experiência acompanhada por SVGs com legendas de ilustração conceitual dos setores, sem apresentá-los como desenhos das obras citadas.
 - Um desenho estrutural na abertura concentra a personalidade visual. Uma animação de traçado ao carregar; sem flutuação infinita ou entradas repetidas em todas as seções.
 - Links textuais sublinhados, sem setas e sem moldura de botão. Ações reais (validar formulário, abrir menu, escolher medição, alternar a cor da foto) preservam semântica de botão e apresentação discreta.
 
@@ -18,13 +18,13 @@ A comparação foi feita com a página publicada, o logo e os conteúdos profiss
 [engenharia de custos / título]  [desenho estrutural + legenda factual]
 [contato por link / serviços]    [ilustração sem vínculo com obras reais]
 [serviço] [o que analisa] [entregas pertinentes]
-[referências profissionais: nome da obra + contexto]
+[SVG conceitual do setor + legenda] [nome da obra + contexto profissional]
 [foto + legenda nominal] [sócio + currículo + LinkedIn]
 [perguntas e respostas]          [contato e triagem demonstrativa]
 [identificação da empresa]       [Desenvolvido pela Guia-se Botafogo]
 ```
 
-A primeira composição repetia o mesmo tratamento em chamadas, retratos e projetos. A revisão corta os ícones de seta, os índices de enfeite, o fechamento com três slogans e os desenhos genéricos sob nomes de empreendimentos. A hierarquia passa a depender de texto, escala e espaçamento.
+A primeira composição repetia o mesmo tratamento em chamadas, retratos e projetos. A revisão corta os ícones de seta, os índices de enfeite, o fechamento com três slogans e as legendas que podiam sugerir uma representação real dos empreendimentos. A hierarquia passa a depender de texto, escala e espaçamento.
 
 ## Fotos
 Os originais públicos são monocromáticos. O usuário autorizou colorização conceitual em 07/11/2026. As versões geradas são usadas apenas como camada de cor sobre a foto original, preservando a luminosidade e os detalhes do retrato de origem. As cores não documentam as roupas ou tons originais.

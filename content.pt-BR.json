@@ -124,29 +124,38 @@
       {
         "name": "PROSUB",
         "category": "Infraestrutura naval",
-        "text": "Complexo naval para submarinos, em Itaguaí, Rio de Janeiro."
+        "text": "Complexo naval para submarinos, em Itaguaí, Rio de Janeiro.",
+        "illustration": "naval",
+        "illustrationCaption": "Ilustração conceitual de infraestrutura naval."
       },
       {
         "name": "Angra 3",
         "category": "Energia nuclear",
-        "text": "Assessoria de custos na reorçamentação da usina nuclear."
+        "text": "Assessoria de custos na reorçamentação da usina nuclear.",
+        "illustration": "nuclear",
+        "illustrationCaption": "Ilustração conceitual de instalações de energia."
       },
       {
         "name": "Metrô / Linha 4",
         "category": "Mobilidade urbana",
-        "text": "Participação em projeto de mobilidade urbana no Rio de Janeiro."
+        "text": "Participação em projeto de mobilidade urbana no Rio de Janeiro.",
+        "illustration": "metro",
+        "illustrationCaption": "Ilustração conceitual de infraestrutura metroviária."
       },
       {
         "name": "PLANGÁS",
         "category": "Óleo e gás",
-        "text": "Atuação em orçamento e acompanhamento de custos na Refinaria Reduc/RJ."
+        "text": "Atuação em orçamento e acompanhamento de custos na Refinaria Reduc/RJ.",
+        "illustration": "industrial",
+        "illustrationCaption": "Ilustração conceitual de instalações industriais."
       }
     ],
     "segments": [
       "Infraestrutura",
       "Obras industriais e nucleares",
       "Edificações"
-    ]
+    ],
+    "illustrationNote": "Os desenhos a seguir são ilustrações conceituais dos setores de atuação. Não são representações técnicas dos empreendimentos citados."
   },
   "partners": {
     "eyebrow": "Sócios",

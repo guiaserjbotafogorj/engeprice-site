@@ -27,7 +27,7 @@ npm run check:placeholders
 - `content.pt-BR.json`: copy, FAQ, serviços, currículos e rótulos.
 - `site.config.json`: identidade, canais e flags; dados divergentes ficam nulos e não são publicados.
 - `src/style.css`: tokens, layouts, estados e movimento reduzido.
-- `src/drawings.mjs`: desenho estrutural conceitual da abertura, sem representar um empreendimento real.
+- `src/drawings.mjs`: desenhos conceituais da abertura e dos setores, com legendas que os distinguem de representações de empreendimentos reais.
 - `REVISAO-DESIGN.md`: direção visual e critérios da revisão.
 - `docs/COLORIZACAO.md`: fontes, saídas e prompt dos retratos; originais preservados.
 - `scripts/build.mjs`: composição das seções e geração dos metadados/JSON-LD/arquivos técnicos.

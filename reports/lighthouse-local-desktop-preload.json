@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "version": "13.6.0",
+  "date": "2026-11-07T13:52:54.540Z",
+  "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 69
+  },
+  "metrics": {
+    "first-contentful-paint": 298.9256,
+    "largest-contentful-paint": 298.9256,
+    "total-blocking-time": 0,
+    "cumulative-layout-shift": 0.0002892701310451508
+  },
+  "scope": "Local, antes da publicação final; móvel antes da troca do preload. Evidência histórica de iteração."
+}

@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-07T13:55:32.180Z",
+  "date": "2026-11-07T13:57:01.261Z",
   "schema": {
     "syntax": "valid",
     "types": [
@@ -26,9 +26,7 @@
     "/assets/favicon.svg",
     "/assets/fonts/playfair.ttf",
     "/app.js",
-    "/assets/brand/logo.webp",
-    "/assets/people/diego-640.webp",
-    "/assets/people/renato-640.webp"
+    "/assets/brand/logo.webp"
   ],
   "externalLinks": [
     "https://engeprice-site.pages.dev/",

@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
 import {structure} from '../src/drawings.mjs';
 import {checkPlaceholders} from './check-placeholders.mjs';
@@ -13,7 +14,9 @@ const nl=s=>e(s).replace(/\n/g,'<br>');
 const arrow='<span aria-hidden="true">↗</span>';
 const eyebrow=s=>`<p class="eyebrow">${e(s)}</p>`;
 const cta=(label,section,cls='button')=>`<a class="${cls}" href="#contato" data-event="cta_click" data-section="${section}">${e(label)}${arrow}</a>`;
-const picture=p=>`<img src="/assets/people/${p.image}-640.webp" srcset="/assets/people/${p.image}-360.webp 360w, /assets/people/${p.image}-640.webp 640w" sizes="(max-width: 700px) 90vw, 420px" width="640" height="640" alt="${e(p.name)}, sócio da Engeprice" loading="lazy" decoding="async">`;
+const photoVersions={};
+for(const p of c.partners.people)for(const width of [360,640]){const key=`${p.image}-${width}`;photoVersions[key]=createHash('sha256').update(await readFile(`assets/people/${key}.webp`)).digest('hex').slice(0,12);}
+const picture=p=>`<img src="/assets/people/${p.image}-640.webp?v=${photoVersions[p.image+'-640']}" srcset="/assets/people/${p.image}-360.webp?v=${photoVersions[p.image+'-360']} 360w, /assets/people/${p.image}-640.webp?v=${photoVersions[p.image+'-640']} 640w" sizes="(max-width: 700px) 90vw, 420px" width="640" height="640" alt="${e(p.name)}, sócio da Engeprice" loading="lazy" decoding="async">`;
 const addressText=config.address ? (typeof config.address==='string'?config.address:[config.address.streetAddress,config.address.addressLocality,config.address.addressRegion,config.address.postalCode].filter(Boolean).join(', ')) : '';
 const fields=c.ui.formLabels;
 const input=(id,type='text',extra='')=>`<label>${e(fields[id])}<input name="${id}" type="${type}" required maxlength="${id==='email'?254:180}" ${extra}></label>`;

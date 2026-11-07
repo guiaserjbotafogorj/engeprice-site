@@ -1,1 +1,16 @@
-{"name":"engeprice-site","version":"1.0.0","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","check:placeholders":"node scripts/check-placeholders.mjs","test":"node --test scripts/*.test.mjs","dev":"node scripts/serve.mjs"},"engines":{"node":">=22"}}
+{
+  "name": "engeprice-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check:placeholders": "node scripts/check-placeholders.mjs",
+    "test": "node --test scripts/*.test.mjs",
+    "dev": "node scripts/serve.mjs",
+    "check:content": "node scripts/check-content.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

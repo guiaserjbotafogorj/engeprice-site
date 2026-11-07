@@ -1,0 +1,10 @@
+import {readFile,access,mkdir,writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+const html=await readFile('dist/index.html','utf8'),c=JSON.parse(await readFile('content.pt-BR.json','utf8'));
+const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+assert.equal(schema['@context'],'https://schema.org');const g=schema['@graph'];assert.equal(g.filter(x=>x['@type']==='Person').length,2);assert(g.some(x=>x['@type']==='ProfessionalService'));
+const faq=g.find(x=>x['@type']==='FAQPage');assert.equal(faq.mainEntity.length,c.faq.items.length);for(let i=0;i<c.faq.items.length;i++){assert.equal(faq.mainEntity[i].name,c.faq.items[i].q);assert.equal(faq.mainEntity[i].acceptedAnswer.text,c.faq.items[i].a);}
+const links=[...html.matchAll(/href="([^"]+)"/g)].map(x=>x[1]);const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]));const anchors=[...new Set(links.filter(x=>x.startsWith('#')))];for(const link of anchors)assert(ids.has(link.slice(1)),`Âncora ausente: ${link}`);
+const assets=[...new Set([...html.matchAll(/(?:src|href)="(\/[^"?#]+)"/g)].map(x=>x[1]))];for(const path of assets)await access('dist'+path);
+assert(!html.includes('[CONFIRMAR'));assert(!html.includes('wa.me/'));assert(!html.includes('tel:'));
+const report={date:new Date().toISOString(),schema:{syntax:'valid',types:g.map(x=>x['@type']),faqAnswersMatched:faq.mainEntity.length,externalValidator:'Não executado. Validação local de estrutura e conteúdo.'},anchorsVerified:anchors,assetsVerified:assets,externalLinks:[...new Set(links.filter(x=>/^https:/.test(x)))],singleH1:(html.match(/<h1[ >]/g)||[]).length===1,noVisiblePlaceholders:true};
+await mkdir('reports',{recursive:true});await writeFile('reports/content-check.json',JSON.stringify(report,null,2));console.log('JSON-LD, FAQ, âncoras e ativos locais verificados.');

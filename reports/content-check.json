@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-07T13:55:32.180Z",
+  "schema": {
+    "syntax": "valid",
+    "types": [
+      "ProfessionalService",
+      "Person",
+      "Person",
+      "FAQPage"
+    ],
+    "faqAnswersMatched": 7,
+    "externalValidator": "Não executado. Validação local de estrutura e conteúdo."
+  },
+  "anchorsVerified": [
+    "#conteudo",
+    "#inicio",
+    "#servicos",
+    "#experiencia",
+    "#socios",
+    "#perguntas",
+    "#contato",
+    "#visao",
+    "#privacidade"
+  ],
+  "assetsVerified": [
+    "/assets/favicon.svg",
+    "/assets/fonts/playfair.ttf",
+    "/app.js",
+    "/assets/brand/logo.webp",
+    "/assets/people/diego-640.webp",
+    "/assets/people/renato-640.webp"
+  ],
+  "externalLinks": [
+    "https://engeprice-site.pages.dev/",
+    "https://www.linkedin.com/in/engdiegoborges/",
+    "https://www.linkedin.com/company/engeprice-consulting/",
+    "https://www.instagram.com/engeprice/"
+  ],
+  "singleH1": true,
+  "noVisiblePlaceholders": true
+}

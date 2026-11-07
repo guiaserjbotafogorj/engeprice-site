@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://engeprice-site.pages.dev/",
+    "status": "200",
+    "exit": 0,
+    "note": ""
+  },
+  {
+    "url": "https://engeprice-site.pages.dev/robots.txt",
+    "status": "200",
+    "exit": 0,
+    "note": ""
+  },
+  {
+    "url": "https://engeprice-site.pages.dev/sitemap.xml",
+    "status": "200",
+    "exit": 0,
+    "note": ""
+  },
+  {
+    "url": "https://engeprice-site.pages.dev/llms.txt",
+    "status": "200",
+    "exit": 0,
+    "note": ""
+  },
+  {
+    "url": "https://engeprice-site.pages.dev/assets/social-card.png",
+    "status": "200",
+    "exit": 0,
+    "note": ""
+  },
+  {
+    "url": "https://www.linkedin.com/in/engdiegoborges/",
+    "status": "999",
+    "exit": 0,
+    "note": "Acesso restrito ao robô; verificar autenticado"
+  },
+  {
+    "url": "https://www.linkedin.com/company/engeprice-consulting/",
+    "status": "403",
+    "exit": 0,
+    "note": "Acesso restrito ao robô; verificar autenticado"
+  },
+  {
+    "url": "https://www.instagram.com/engeprice/",
+    "status": "200",
+    "exit": 0,
+    "note": ""
+  }
+]

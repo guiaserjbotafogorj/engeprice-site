@@ -9,7 +9,7 @@
 - [ ] LinkedIn do Renato: não foi presumido e não aparece.
 - [ ] Projetos PROSUB, Angra 3, PLANGÁS e Metrô Linha 4: validar escopo, papel dos sócios, autorização de referência e eventual confidencialidade. A página atribui as referências à trajetória profissional dos sócios.
 - [ ] Fotos reais das obras e respectivos direitos, se desejadas. Os desenhos atuais são conceituais e próprios.
-- [ ] Logos de clientes e autorização de uso. Não usados nesta prévia.
+- [ ] Confirmar vínculos e autorização de uso dos logotipos recuperados do site atual, agora apresentados na seção Clientes e instituições.
 
 ## Dados divergentes — não escolher sem confirmação
 - [ ] Endereço: R. Prof. Almeida Cousin, 125, sala 421, ou R. Abiail do Amaral Carneiro, 191, sala 501. Ambos constam no briefing como divergentes; nenhum foi publicado. Mapa depende dessa confirmação.
@@ -30,3 +30,7 @@
 ## Revisão de design
 - [ ] Validar a sugestão tipográfica Archivo junto à marca.
 - [ ] Substituir as camadas de colorização conceitual por fotos originais em cores quando fornecidas. O tratamento atual está identificado no site e documentado em docs/COLORIZACAO.md.
+
+- [ ] Reconciliar o NAP do site com a ficha pública do Google, atualmente incorporada como fonte externa.
+- [ ] Confirmar papéis e datas dos relacionamentos com as marcas apresentadas; a marca Odebrecht está identificada como referência histórica.
+- [ ] Confirmar a identidade e grafia do software Siseng; não foi presumido que se trata de Sienge.

@@ -14,10 +14,14 @@ A proposta passou por revisão de tipografia, composição, copy, imagens, naveg
 - Legendas das fotos identificam os respectivos sócios. A colorização conceitual está informada junto à seção.
 - Fotos: hover no mouse; toque/clique alterna a cor, e Enter/Espaço operam o controle. Estado e nome acessíveis são atualizados. A cor é uma camada sobre os originais monocromáticos, preservando sua luminosidade e detalhes. Prompt e caminhos em `docs/COLORIZACAO.md`.
 - A imagem social e a página 404 acompanham o novo tratamento tipográfico; não há setas decorativas nelas.
+- Bases de preços e plataformas em grupos próprios, com planilha conceitual de orçamento e fórmula de somatória dos custos.
+- Seis marcas recuperadas do site atual em uma faixa de clientes e instituições; Odebrecht identificada como referência histórica. Origem documentada em `docs/GOOGLE-E-CLIENTES.md`.
+- Perfil correto do Google identificado pelo site oficial informado na ficha. Iframe oficial incorporado, com link para a ficha, reserva de espaço e lazy loading. NAP próprio permanece pendente.
+- Os SVGs agora têm 12 segundos de traçado e defasagem de 0,28 segundo entre partes; observação de entrada em viewport inicia cada desenho uma vez. Em teste, offsets de 0,99 passaram a 0 ao concluir, com `animation-duration: 12s`.
 
 ## Auditorias da revisão
 
-Lighthouse 13.6.0, Chrome headless isolado. Primeira conferência da revisão no servidor local:
+Lighthouse 13.6.0, Chrome headless isolado. Conferência local da revisão com clientes, mapa, planilha conceitual e traçado lento:
 
 | Indicador | Celular | Computador |
 | --- | ---: | ---: |
@@ -25,9 +29,9 @@ Lighthouse 13.6.0, Chrome headless isolado. Primeira conferência da revisão no
 | Acessibilidade | 100 | 100 |
 | Boas práticas | 100 | 100 |
 | SEO | 69 | 69 |
-| LCP | 1,10 s | 0,29 s |
+| LCP | 1,12 s | 0,30 s |
 | CLS | 0 | 0 |
-| TBT | 0 ms | 0 ms |
+| TBT | 19 ms | 0 ms |
 
 Relatórios: `reports/lighthouse-review-local-mobile.json` e `reports/lighthouse-review-local-desktop.json`. São medições de laboratório, não promessa para todo dispositivo/conexão. TBT não substitui INP; não houve medição de campo nem teste físico de iPhone.
 

@@ -10,7 +10,7 @@ A comparação foi feita com a página publicada, o logo e os conteúdos profiss
 - Archivo variável, hospedada localmente: 600 nos títulos, 400 na leitura e 500 nos links. As letras sem serifa, abertas e com presença mais técnica acompanham melhor o logo. Sugestão tipográfica da proposta, sujeita à aprovação da marca.
 - Conteúdo alinhado à esquerda, títulos sem palavra isolada em dourado. Limite de leitura em torno de 65 caracteres. Corpo de 15–17 px, rótulos de 12–14 px.
 - Serviços em linhas de escopo, não uma coleção de cartões. Numeração apenas nas etapas que formam uma sequência. Experiência acompanhada por SVGs com legendas de ilustração conceitual dos setores, sem apresentá-los como desenhos das obras citadas.
-- Um desenho estrutural na abertura concentra a personalidade visual. Uma animação de traçado ao carregar; sem flutuação infinita ou entradas repetidas em todas as seções.
+- Um desenho estrutural na abertura concentra a personalidade visual. Traçados de 12 segundos, com defasagem curta entre partes da estrutura (cerca de 14 segundos no total), iniciados uma vez quando o SVG entra na área de leitura. Sem flutuação infinita; movimento reduzido mostra o desenho completo.
 - Links textuais sublinhados, sem setas e sem moldura de botão. Ações reais (validar formulário, abrir menu, escolher medição, alternar a cor da foto) preservam semântica de botão e apresentação discreta.
 
 ```text
@@ -30,3 +30,6 @@ A primeira composição repetia o mesmo tratamento em chamadas, retratos e proje
 Os originais públicos são monocromáticos. O usuário autorizou colorização conceitual em 07/11/2026. As versões geradas são usadas apenas como camada de cor sobre a foto original, preservando a luminosidade e os detalhes do retrato de origem. As cores não documentam as roupas ou tons originais.
 
 Interação: hover em dispositivos com mouse; toque alterna entre monocromático e cor; Enter e Espaço fazem a mesma ação. O toque que inicia uma rolagem não deve alternar a foto. O estado é anunciado por `aria-pressed`; preferência por movimento reduzido elimina a transição.
+
+## Complementos
+Bases e plataformas foram separadas em um quadro de trabalho, acompanhado por uma planilha simbólica de orçamento. Os clientes aparecem em uma faixa de marcas com dimensão óptica equilibrada e sem carrossel automático. O perfil verificado no Google foi incorporado junto ao contato, com indicação de fonte e link para a ficha pública.

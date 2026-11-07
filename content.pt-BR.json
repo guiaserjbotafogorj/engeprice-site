@@ -201,16 +201,69 @@
     "colorNotice": "Retratos com colorização conceitual."
   },
   "tools": {
-    "eyebrow": "Referências técnicas",
-    "title": "Bases e ferramentas de orçamento.",
-    "description": "A escolha considera o tipo de obra, as exigências do contratante e o escopo de cada análise.",
+    "eyebrow": "Bases e ferramentas",
+    "title": "Do quantitativo à composição do orçamento.",
+    "description": "Referências de preços, ferramentas de orçamentação e análise técnica se complementam na estruturação dos custos.",
     "items": [
       "SINAPI",
       "SICRO",
       "OrçaFascio",
       "Siseng",
       "Volare"
-    ]
+    ],
+    "basesTitle": "Referências de preços",
+    "platformsTitle": "Softwares de orçamentação",
+    "bases": [
+      {
+        "name": "SINAPI",
+        "description": "Referências para custos e índices da construção civil."
+      },
+      {
+        "name": "SICRO",
+        "description": "Referências de custos para infraestrutura de transportes."
+      }
+    ],
+    "platforms": [
+      "OrçaFascio",
+      "Siseng",
+      "Volare"
+    ],
+    "methodTitle": "A lógica de um custo",
+    "methodNote": "Esquema conceitual de composição. Cada orçamento depende do escopo, dos projetos e das premissas do empreendimento.",
+    "equationTerms": [
+      "Quantidade",
+      "Custo unitário",
+      "Custo do item"
+    ],
+    "equationTotal": "A soma dos custos dos itens forma o custo direto.",
+    "sheetTitle": "Planilha conceitual de orçamento",
+    "sheetHeaders": [
+      "Item",
+      "Quantidade",
+      "Custo unitário",
+      "Custo do item"
+    ],
+    "sheetRows": [
+      [
+        "Serviço A",
+        "q₁",
+        "c₁",
+        "q₁ × c₁"
+      ],
+      [
+        "Serviço B",
+        "q₂",
+        "c₂",
+        "q₂ × c₂"
+      ],
+      [
+        "Serviço C",
+        "q₃",
+        "c₃",
+        "q₃ × c₃"
+      ]
+    ],
+    "sheetTotal": "Custo direto = Σ (qᵢ × cᵢ)"
   },
   "faq": {
     "eyebrow": "Perguntas frequentes",
@@ -282,7 +335,7 @@
     "closeMenu": "Fechar menu",
     "skip": "Ir para o conteúdo",
     "privacyTitle": "Privacidade e uso de dados",
-    "privacyText": "Nesta proposta conceitual, o formulário apenas valida o preenchimento no navegador: não envia nem armazena os dados informados. O link de e-mail abre seu aplicativo de mensagens. As preferências de medição ficam no navegador; os parâmetros de campanha podem permanecer durante a sessão. A medição opcional só é ativada com consentimento e configuração própria.",
+    "privacyText": "Nesta proposta conceitual, o formulário apenas valida o preenchimento no navegador: não envia nem armazena os dados informados. O link de e-mail abre seu aplicativo de mensagens. As preferências de medição ficam no navegador; os parâmetros de campanha podem permanecer durante a sessão. A medição opcional só é ativada com consentimento e configuração própria. O mapa incorporado é fornecido pelo Google e pode receber dados técnicos de acesso quando carregado.",
     "cookieText": "Podemos usar medição opcional para entender a navegação. Sua escolha não afeta o acesso ao site.",
     "cookieAccept": "Permitir medição",
     "cookieReject": "Não permitir medição",
@@ -338,5 +391,57 @@
   "proposal": {
     "label": "Proposta conceitual",
     "description": "Proposta conceitual de renovação do site da Engeprice. Conteúdo e imagens sujeitos à aprovação."
+  },
+  "clients": {
+    "eyebrow": "Clientes e instituições",
+    "title": "Relações que fazem parte da trajetória.",
+    "description": "Empresas e instituições presentes na experiência profissional apresentada pela Engeprice.",
+    "items": [
+      {
+        "name": "EGTC — Engetec Infra",
+        "asset": "egtc-display.webp",
+        "width": 132,
+        "height": 61
+      },
+      {
+        "name": "Tractebel Engie",
+        "asset": "client-admin-display.webp",
+        "width": 286,
+        "height": 61
+      },
+      {
+        "name": "CREA-SC",
+        "asset": "crea-sc-display.webp",
+        "width": 300,
+        "height": 70
+      },
+      {
+        "name": "Eletronuclear",
+        "asset": "eletronuclear-display.webp",
+        "width": 283,
+        "height": 110
+      },
+      {
+        "name": "BNDES",
+        "asset": "bndes-display.webp",
+        "width": 296,
+        "height": 60
+      },
+      {
+        "name": "Odebrecht — referência histórica",
+        "asset": "client-2-display.webp",
+        "caption": "Referência histórica",
+        "width": 240,
+        "height": 53
+      }
+    ]
+  },
+  "google": {
+    "eyebrow": "Engeprice no Google",
+    "title": "Conheça o perfil da empresa.",
+    "description": "Consulte a localização e as informações públicas da Engeprice Consulting no Google Maps.",
+    "link": "Ver perfil da empresa no Google",
+    "mapTitle": "Perfil e localização da Engeprice Consulting no Google Maps",
+    "sourceNote": "Localização e informações exibidas pelo Google."
   }
 }

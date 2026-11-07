@@ -249,7 +249,11 @@
     "previewSubmit": "Validar preenchimento",
     "privacy": "Li o aviso de privacidade e estou ciente do uso dos dados para responder à minha solicitação.",
     "success": "Recebemos sua mensagem. A equipe Engeprice retornará em breve.",
-    "demoSuccess": "Preenchimento validado. Nesta prévia, nenhum dado foi enviado. Para contato real, utilize contato@engeprice.com.br."
+    "demoSuccess": "Preenchimento validado. Nesta prévia, nenhum dado foi enviado. Para contato real, utilize contato@engeprice.com.br.",
+    "phoneLabel": "TELEFONE",
+    "addressLabel": "ENDEREÇO",
+    "mapLabel": "Ver localização no mapa",
+    "whatsappLabel": "Conversar pelo WhatsApp"
   },
   "footer": {
     "tagline": "Rigor técnico.\nDecisões fundamentadas.",

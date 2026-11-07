@@ -79,16 +79,28 @@ button, input, select, textarea, summary, a { touch-action: manipulation; }
 .section-head { display: grid; grid-template-columns: 1.25fr 1fr; gap: 8vw; align-items: end; margin-bottom: 48px; }
 .section-head h2 { max-width: 23ch; }
 .section-head > p { max-width: 43ch; color: var(--muted); font-size: 16px; line-height: 1.8; }
+.services .section-head { margin-bottom: 30px; }
+.services .section-head h2 { font-size: clamp(30px, 3.2vw, 44px); max-width: 24ch; }
 .service-list { border-top: 1px solid var(--line); }
-.service-row { display: grid; grid-template-columns: .9fr 1.25fr 1.15fr; align-items: start; gap: 4vw; padding: 36px 0 40px; border-bottom: 1px solid var(--line); }
-.service-stage { margin-bottom: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
-.service-title h3 { max-width: 15ch; font-size: clamp(26px, 2.6vw, 36px); }
-.service-description { font-size: 15px; }
-.service-description .audience { margin-top: 18px; color: var(--muted); font-size: 13px; }
-.service-description .text-link { margin-top: 15px; font-size: 14px; }
-.service-row ul { list-style: none; padding: 0; font-size: 14px; line-height: 1.65; }
-.service-row li { padding: 0 0 14px; }
-.service-row li + li { padding-top: 14px; border-top: 1px solid var(--line); }
+.service-row { display: grid; grid-template-columns: 1.15fr 1.35fr .75fr; align-items: start; gap: 32px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+.service-identity { display: flex; align-items: center; gap: 18px; }
+.service-diagram { width: 72px; height: 64px; flex: 0 0 72px; color: var(--ink); }
+.service-diagram-accent { stroke: #8b6814; }
+.service-stage { margin-bottom: 7px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.service-title h3 { max-width: 17ch; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; }
+.service-description { font-size: 14px; line-height: 1.7; }
+.service-description .audience { margin: 14px 0; color: var(--muted); font-size: 13px; }
+.service-detail { margin-top: 10px; }
+.service-detail summary { display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 44px; font-size: 12px; color: var(--muted); }
+.service-detail summary .disclosure-label { color: var(--ink); }
+.service-contact .text-link { font-size: 13px; padding-top: 0; line-height: 1.65; }
+.service-row ul { padding-left: 18px; font-size: 13px; line-height: 1.7; }
+.service-row li, .service-row li + li { padding: 5px 0; border: 0; }
+@media (min-width: 601px) and (max-width: 1000px) {
+ .service-row { grid-template-columns: 1fr 1.25fr; gap: 12px 28px; }
+ .service-contact { grid-column: 2; }
+ .service-diagram { width: 58px; flex-basis: 58px; }
+}
 summary { cursor: pointer; list-style: none; }
 summary::-webkit-details-marker { display: none; }
 .scope { border-bottom: 1px solid var(--line); margin-top: 20px; }
@@ -426,4 +438,15 @@ details[open] > summary .when-open { display: inline; }
   .drawing-ready [data-drawing] .draw-lines path { stroke-dashoffset: 0 !important; }
   .drawing-ready [data-drawing] .art-points { opacity: .65 !important; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 600px) {
+ .services .section-head h2 { font-size: 32px; }
+ .service-row { padding: 25px 0; }
+ .service-title h3 { font-size: 25px; }
+ .service-description { margin-top: 15px; font-size: 14px; }
+ .service-row ul { margin-top: 10px; font-size: 13px; }
+ .service-row li, .service-row li + li { padding: 5px 0; }
+ .service-contact { margin-top: 10px; }
+ .service-contact .text-link { font-size: 14px; }
 }

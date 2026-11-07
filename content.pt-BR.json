@@ -93,7 +93,10 @@
       "Apoio técnico a aditivos e pleitos",
       "Monitoramento e controle de custos",
       "Defesas e esclarecimentos de preços perante clientes e órgãos de controle"
-    ]
+    ],
+    "detailLabel": "Entregas e aplicação",
+    "detailOpen": "Ver detalhes",
+    "detailClose": "Fechar detalhes"
   },
   "process": {
     "eyebrow": "Forma de trabalho",

@@ -72,8 +72,16 @@ function hero() {
 function intro() {
   return `<section id="visao" class="intro section"><div>${label(c.intro.eyebrow)}<h2>${nl(c.intro.title)}</h2></div><div class="intro-text"><p>${e(c.intro.description)}</p><p class="muted">${e(c.intro.note)}</p></div></section>`;
 }
+function serviceDiagram(index) {
+  const diagrams = [
+    '<path d="M14 65H90M20 59V43H36V59M43 59V31H59V59M66 59V18H82V59"/><path class="service-diagram-accent" d="M19 28L44 19L62 24L83 10"/><circle cx="44" cy="19" r="2"/><circle cx="62" cy="24" r="2"/>',
+    '<path d="M22 10H70L84 24V72H22ZM70 10V24H84M31 35H75M31 47H75M31 59H75M48 29V65M63 29V65"/><path class="service-diagram-accent" d="M31 59H75M63 35V59"/>',
+    '<path d="M17 12H59V64H17ZM27 24H49M27 34H49M27 44H42M48 28H88V74H48M59 39H78M59 49H78"/><path class="service-diagram-accent" d="M59 62L65 68L79 55"/>'
+  ];
+  return `<svg class="service-diagram" viewBox="0 0 104 84" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${diagrams[index]}</svg>`;
+}
 function services() {
-  return `<section id="servicos" class="services section">${heading(c.services)}<div class="service-list">${c.services.cards.map((service, i) => `<article class="service-row"><div class="service-title"><p class="service-stage">${e(service.stage)}</p><h3>${e(service.title)}</h3></div><div class="service-description"><p>${e(service.description)}</p><p class="audience">${e(service.audience)}</p>${contactLink(service.link, 'servico-'+i)}</div><ul>${service.items.map(item => `<li>${e(item)}</li>`).join('')}</ul></article>`).join('')}</div>
+  return `<section id="servicos" class="services section">${heading(c.services)}<div class="service-list">${c.services.cards.map((service, i) => `<article class="service-row"><div class="service-identity">${serviceDiagram(i)}<div class="service-title"><p class="service-stage">${e(service.stage)}</p><h3>${e(service.title)}</h3></div></div><div class="service-description"><p>${e(service.description)}</p><details class="service-detail"><summary>${e(c.services.detailLabel)}${disclosure(c.services.detailOpen, c.services.detailClose)}</summary><p class="audience">${e(service.audience)}</p><ul>${service.items.map(item => `<li>${e(item)}</li>`).join('')}</ul></details></div><div class="service-contact">${contactLink(service.link, 'servico-'+i)}</div></article>`).join('')}</div>
     <details class="scope"><summary>${e(c.services.expand)}${disclosure(c.ui.showScope, c.ui.hideScope)}</summary><ul>${c.services.full.map(item => `<li>${e(item)}</li>`).join('')}</ul></details></section>`;
 }
 function processSection() {

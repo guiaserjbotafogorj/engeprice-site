@@ -1,0 +1,17 @@
+{
+  "name": "Engeprice",
+  "legalName": "ENGEPRICE CONSULTING LTDA.",
+  "cnpj": "44.558.232/0001-35",
+  "email": "contato@engeprice.com.br",
+  "url": "https://engeprice-site.pages.dev",
+  "officialUrl": "https://engeprice.com.br",
+  "preview": true,
+  "city": "Vitória, ES",
+  "address": null,
+  "phone": null,
+  "budgetVolume": null,
+  "whatsappEnabled": false,
+  "linkedin": "https://www.linkedin.com/company/engeprice-consulting/",
+  "instagram": "https://www.instagram.com/engeprice/",
+  "pending": {"address":"[CONFIRMAR]", "phone":"[CONFIRMAR]", "budgetVolume":"[CONFIRMAR]", "renatoLinkedin":"[CONFIRMAR]"}
+}

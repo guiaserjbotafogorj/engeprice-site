@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "title": "Engeprice | Engenharia de custos para obras de grande porte",
+    "description": "Consultoria em engenharia de custos: estimativas, orçamentos executivos e apoio técnico em pleitos. Conheça a experiência dos sócios da Engeprice."
+  },
+  "nav": [
+    {
+      "id": "servicos",
+      "label": "Serviços"
+    },
+    {
+      "id": "experiencia",
+      "label": "Experiência"
+    },
+    {
+      "id": "socios",
+      "label": "Sócios"
+    },
+    {
+      "id": "perguntas",
+      "label": "Perguntas"
+    }
+  ],
+  "hero": {
+    "eyebrow": "CONSULTORIA EM ENGENHARIA DE CUSTOS",
+    "title": "Engenharia de custos para",
+    "accent": "decisões de grande porte.",
+    "description": "Da viabilidade ao orçamento executivo. Do controle de custos à fundamentação de pleitos. Rigor técnico para cada fase do seu empreendimento.",
+    "primary": "Fale com a Engeprice",
+    "secondary": "Conheça nossa atuação",
+    "pillars": [
+      "Experiência em obras especiais",
+      "Atuação direta dos sócios",
+      "Do estudo de viabilidade ao pleito"
+    ],
+    "drawingLabel": "CADA DECISÃO TEM UMA ESTRUTURA.",
+    "drawingNote": "ESTUDO CONCEITUAL / ENGENHARIA DE CUSTOS",
+    "scroll": "Explore nossa atuação"
+  },
+  "intro": {
+    "eyebrow": "O CUSTO É PARTE DA ESTRATÉGIA",
+    "title": "Obras complexas.\nFundamentos claros.",
+    "description": "Um orçamento precisa refletir como a obra será executada. Traduzimos informações de projeto e de mercado em uma estrutura de custos que considera as particularidades do seu empreendimento.",
+    "note": "Consultoria sob medida para empresas, investidores e equipes de engenharia."
+  },
+  "services": {
+    "eyebrow": "01 / NOSSA ATUAÇÃO",
+    "title": "Precisão em cada\netapa do projeto.",
+    "description": "O escopo acompanha o desafio. A análise técnica sustenta a decisão.",
+    "cards": [
+      {
+        "title": "Estimativas de custos",
+        "stage": "ANTES DE INVESTIR",
+        "description": "Uma base técnica para avaliar cenários e estruturar a viabilidade do empreendimento.",
+        "items": [
+          "Estimativas de investimento (CAPEX)",
+          "Premissas e parâmetros de custos",
+          "Análise de alternativas e cenários"
+        ],
+        "audience": "Para investidores e equipes de desenvolvimento."
+      },
+      {
+        "title": "Orçamento executivo",
+        "stage": "ANTES DE EXECUTAR",
+        "description": "Do quantitativo à composição de preços: uma visão detalhada do custo da obra.",
+        "items": [
+          "EAP e levantamento de quantitativos",
+          "Composições, cotações e BDI",
+          "Histogramas e relatórios personalizados"
+        ],
+        "audience": "Para construtoras, contratantes e equipes de engenharia."
+      },
+      {
+        "title": "Disputas e pleitos",
+        "stage": "AO LONGO DO CONTRATO",
+        "description": "Fundamentação de custos para aditivos, reequilíbrios e esclarecimentos técnicos.",
+        "items": [
+          "Apoio técnico em pleitos e aditivos",
+          "Análise de reequilíbrio econômico-financeiro",
+          "Esclarecimentos perante órgãos de controle"
+        ],
+        "audience": "Para gestores de contratos e equipes técnicas."
+      }
+    ],
+    "expand": "Explore o escopo completo de serviços",
+    "full": [
+      "Estimativas de custos (CAPEX)",
+      "Orçamentos executivos",
+      "Orçamentos de referência",
+      "Apoio técnico a aditivos e pleitos",
+      "Monitoramento e controle de custos",
+      "Defesas e esclarecimentos de preços perante clientes e órgãos de controle"
+    ]
+  },
+  "process": {
+    "eyebrow": "A LÓGICA DO TRABALHO",
+    "title": "Entender. Estruturar.\nFundamentar.",
+    "description": "Cada empreendimento tem premissas próprias. A conversa inicial é o ponto de partida para definir o escopo adequado.",
+    "steps": [
+      {
+        "title": "Diagnóstico",
+        "text": "Entender a demanda, o estágio do projeto e as informações disponíveis."
+      },
+      {
+        "title": "Escopo sob medida",
+        "text": "Definir as análises e entregas pertinentes ao desafio apresentado."
+      },
+      {
+        "title": "Execução técnica",
+        "text": "Organizar quantitativos, premissas e referências de custos."
+      },
+      {
+        "title": "Defesa e acompanhamento",
+        "text": "Esclarecer as análises e apoiar a discussão técnica dos resultados."
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "02 / EXPERIÊNCIA DOS SÓCIOS",
+    "title": "Repertório construído\nem grandes desafios.",
+    "description": "Experiência profissional dos fundadores em empreendimentos de infraestrutura, indústria, energia e edificações.",
+    "note": "As referências apresentadas integram a trajetória profissional dos sócios e não representam, necessariamente, contratos da Engeprice.",
+    "projects": [
+      {
+        "name": "PROSUB",
+        "category": "INFRAESTRUTURA NAVAL",
+        "text": "Complexo naval para submarinos, em Itaguaí, Rio de Janeiro.",
+        "type": "naval"
+      },
+      {
+        "name": "Angra 3",
+        "category": "ENERGIA NUCLEAR",
+        "text": "Assessoria de custos na reorçamentação da usina nuclear.",
+        "type": "nuclear"
+      },
+      {
+        "name": "Metrô / Linha 4",
+        "category": "MOBILIDADE URBANA",
+        "text": "Participação em projeto de mobilidade urbana no Rio de Janeiro.",
+        "type": "metro"
+      },
+      {
+        "name": "PLANGÁS",
+        "category": "ÓLEO E GÁS",
+        "text": "Atuação em orçamento e acompanhamento de custos na Refinaria Reduc/RJ.",
+        "type": "industrial"
+      }
+    ],
+    "segments": [
+      "Infraestrutura",
+      "Obras industriais e nucleares",
+      "Edificações"
+    ]
+  },
+  "partners": {
+    "eyebrow": "03 / QUEM CONDUZ",
+    "title": "A experiência tem nome.\nE participa do trabalho.",
+    "description": "Conheça os sócios que estão à frente da Engeprice.",
+    "people": [
+      {
+        "name": "Diego Borges",
+        "role": "SÓCIO / ENGENHARIA DE CUSTOS",
+        "specialty": "Orçamentos e administração contratual.",
+        "bio": [
+          "Experiência em obras de infraestrutura de grande porte, incluindo o complexo naval do PROSUB e assessoria de custos na reorçamentação de Angra 3.",
+          "Especializações em Gerenciamento de Projetos pela FGV-RJ e em Engenharia de Custos pelo IBEC. Professor de pós-graduação do IBEC nas disciplinas de Orçamentos de Obras Especiais."
+        ],
+        "tags": [
+          "FGV-RJ",
+          "IBEC",
+          "Docência"
+        ],
+        "image": "diego",
+        "linkedin": "https://www.linkedin.com/in/engdiegoborges/"
+      },
+      {
+        "name": "Renato Carvalhal",
+        "role": "SÓCIO / PLANEJAMENTO E CUSTOS",
+        "specialty": "Planejamento e controle de custos.",
+        "bio": [
+          "Experiência em orçamento e acompanhamento de custos nos setores de óleo e gás, infraestrutura e mobilidade urbana, com participação no PLANGÁS, Metrô Linha 4, PROSUB e Angra 3.",
+          "Engenheiro civil, Black Belt Lean Six Sigma e especialista em gestão de resultados, com atuação em planejamento, controle de custos e estudos de viabilidade para processos licitatórios."
+        ],
+        "tags": [
+          "Engenharia civil",
+          "Lean Six Sigma",
+          "Gestão de resultados"
+        ],
+        "image": "renato",
+        "linkedin": null
+      }
+    ]
+  },
+  "tools": {
+    "eyebrow": "REFERÊNCIAS E FERRAMENTAS",
+    "title": "Conhecimento técnico.\nBases reconhecidas.",
+    "description": "Referências públicas e ferramentas de orçamentação utilizadas conforme o escopo do trabalho.",
+    "items": [
+      "SINAPI",
+      "SICRO",
+      "OrçaFascio",
+      "Siseng",
+      "Volare"
+    ]
+  },
+  "faq": {
+    "eyebrow": "04 / PERGUNTAS FREQUENTES",
+    "title": "Clareza antes\nda primeira conversa.",
+    "items": [
+      {
+        "q": "O que é engenharia de custos?",
+        "a": "É a área da engenharia que estima, estrutura e acompanha os custos de um empreendimento. Reúne informações de projeto, quantitativos, métodos executivos e referências de mercado para apoiar decisões de investimento, contratação e execução. Na Engeprice, o escopo é definido conforme a fase da obra e a necessidade da empresa."
+      },
+      {
+        "q": "Qual a diferença entre estimativa e orçamento executivo?",
+        "a": "A estimativa apoia decisões iniciais com as informações disponíveis, parâmetros e premissas do empreendimento. O orçamento executivo detalha quantitativos, composições de preços, cotações e condições de execução. O nível de precisão possível depende da maturidade dos projetos e da qualidade dos dados fornecidos em cada etapa."
+      },
+      {
+        "q": "Em quais tipos de obra a Engeprice atua?",
+        "a": "A atuação abrange obras de infraestrutura, empreendimentos industriais e nucleares e edificações. A trajetória dos sócios inclui obras marítimas, complexos navais, mobilidade urbana, óleo e gás e energia. Cada demanda é analisada para identificar a aderência da experiência da equipe e definir um escopo técnico adequado."
+      },
+      {
+        "q": "A Engeprice atende fora do Espírito Santo?",
+        "a": "Sim. A Engeprice tem base em Vitória, no Espírito Santo, e atuação de abrangência nacional, conforme informado em seu site institucional. A forma de atendimento, as informações necessárias e eventuais atividades presenciais são definidas na avaliação da demanda, considerando a localização, o estágio e as particularidades do empreendimento."
+      },
+      {
+        "q": "Quais bases de preços e ferramentas são utilizadas?",
+        "a": "A equipe trabalha com referências como SINAPI e SICRO e ferramentas de orçamento como OrçaFascio, Siseng e Volare, conforme a necessidade do serviço. A escolha considera o tipo de obra, a data-base, a localização, as exigências do contratante e a necessidade de cotações específicas de mercado."
+      },
+      {
+        "q": "Quando procurar apoio técnico para um pleito?",
+        "a": "O apoio pode ser pertinente quando alterações de escopo, condições de execução ou custos exigem análise e fundamentação técnica. A avaliação depende do contrato, dos registros disponíveis e dos fatos envolvidos. A Engeprice atua no suporte de custos; o enquadramento jurídico deve ser conduzido pelos responsáveis legais da empresa."
+      },
+      {
+        "q": "Como iniciar uma conversa com a Engeprice?",
+        "a": "Informe sua empresa, função, tipo de demanda, fase e porte da obra no formulário de contato. Esses dados ajudam a equipe a compreender o contexto antes de uma conversa técnica. Se preferir, utilize o e-mail institucional e inclua uma descrição breve do empreendimento e do apoio que procura."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "05 / VAMOS CONVERSAR",
+    "title": "Todo projeto começa\ncom uma boa pergunta.",
+    "description": "Conte o contexto do seu empreendimento. A primeira análise é entender como a engenharia de custos pode contribuir.",
+    "audience": "Atendimento voltado a empresas, investidores e equipes responsáveis por empreendimentos de engenharia.",
+    "emailLabel": "PREFERE E-MAIL?",
+    "locationLabel": "BASE EM VITÓRIA, ES / ATUAÇÃO NACIONAL",
+    "previewNotice": "Esta é uma prévia para apresentação. O envio de formulários ainda não está habilitado. Para contato real, utilize o e-mail institucional.",
+    "submit": "Enviar contexto do projeto",
+    "previewSubmit": "Validar preenchimento",
+    "privacy": "Li o aviso de privacidade e estou ciente do uso dos dados para responder à minha solicitação.",
+    "success": "Recebemos sua mensagem. A equipe Engeprice retornará em breve.",
+    "demoSuccess": "Preenchimento validado. Nesta prévia, nenhum dado foi enviado. Para contato real, utilize contato@engeprice.com.br."
+  },
+  "footer": {
+    "tagline": "Rigor técnico.\nDecisões fundamentadas.",
+    "copyright": "Todos os direitos reservados.",
+    "privacy": "Privacidade",
+    "cookies": "Preferências de medição",
+    "preview": "Prévia de renovação / apresentação para aprovação",
+    "newsletter": "Novidades da Engeprice",
+    "newsletterText": "Quer receber novidades? Solicite seu cadastro pelo e-mail institucional.",
+    "newsletterLink": "Solicitar cadastro por e-mail"
+  },
+  "ui": {
+    "linkedin": "Perfil no LinkedIn",
+    "menu": "Menu",
+    "closeMenu": "Fechar menu",
+    "skip": "Ir para o conteúdo",
+    "serviceCta": "Conversar sobre este serviço",
+    "scopeLabel": "ESCOPO",
+    "audienceLabel": "PARA QUEM É",
+    "privacyTitle": "Privacidade e uso de dados",
+    "privacyText": "Nesta prévia, o formulário apenas valida o preenchimento no seu navegador: não envia nem armazena os dados informados. O e-mail abre seu aplicativo de mensagens. A produção depende da definição de responsável, canal de direitos, serviço de envio e prazo de retenção. Preferências de medição e parâmetros de campanha usam armazenamento local ou de sessão. A medição opcional só é ativada com consentimento e configuração de GTM.",
+    "cookieText": "Podemos usar medição opcional para entender a navegação. Sua escolha não afeta o acesso ao site.",
+    "cookieAccept": "Permitir medição",
+    "cookieReject": "Somente necessários",
+    "cookieTitle": "Sua escolha de privacidade",
+    "formLabels": {
+      "name": "Nome",
+      "company": "Empresa",
+      "role": "Cargo / função",
+      "email": "E-mail profissional",
+      "demand": "Tipo de demanda",
+      "phase": "Fase da obra",
+      "type": "Tipo de obra",
+      "size": "Porte / dimensão da obra",
+      "message": "Contexto do empreendimento"
+    },
+    "demandOptions": [
+      "Selecione uma demanda",
+      "Estimativa de custos / CAPEX",
+      "Orçamento executivo",
+      "Disputas, aditivos e pleitos",
+      "Controle de custos",
+      "Outro apoio técnico"
+    ],
+    "phaseOptions": [
+      "Selecione a fase",
+      "Estudo de viabilidade",
+      "Projeto / planejamento",
+      "Contratação",
+      "Execução",
+      "Encerramento / discussão contratual"
+    ],
+    "typeOptions": [
+      "Selecione o tipo",
+      "Infraestrutura",
+      "Industrial / nuclear",
+      "Edificações",
+      "Outro"
+    ],
+    "messagePlaceholder": "Descreva o empreendimento, o desafio e as informações disponíveis.",
+    "sizePlaceholder": "Ex.: complexo industrial, extensão ou área estimada",
+    "required": "Todos os campos são obrigatórios.",
+    "formError": "Não foi possível enviar. Tente novamente ou utilize o e-mail institucional."
+  },
+  "closing": [
+    "Entender a complexidade.",
+    "Estruturar os custos.",
+    "Fundamentar a decisão."
+  ]
+}

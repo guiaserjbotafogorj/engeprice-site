@@ -229,9 +229,9 @@ details[open] > summary .when-open { display: inline; }
 }
 /* The diagrams are constructed once, as they enter the reading viewport. */
 .drawing-ready [data-drawing] .draw-lines path { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.drawing-ready [data-drawing].is-drawing .draw-lines path { animation: construct 12s linear both; }
+.drawing-ready [data-drawing].is-drawing .draw-lines path { animation: construct 8s linear both; }
 .drawing-ready [data-drawing] .art-points { opacity: 0; }
-.drawing-ready [data-drawing].is-drawing .art-points { animation: construction-points 12s linear both; }
+.drawing-ready [data-drawing].is-drawing .art-points { animation: construction-points 8s linear both; }
 @keyframes construction-points { 0%, 88% { opacity: 0; } 100% { opacity: .65; } }
 @keyframes construct { to { stroke-dashoffset: 0; } }
 .clients { padding-top: 35px; border-top: 1px solid var(--line); }

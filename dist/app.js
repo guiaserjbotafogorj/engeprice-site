@@ -23,7 +23,7 @@ document.addEventListener('click',event=>{const a=event.target.closest('[data-ev
 const params=new URLSearchParams(location.search);
 const utmKeys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
 for(const key of utmKeys){const value=params.get(key);if(value)store.set('ep-'+key,value.slice(0,300),true);}
-// A shared 12-second clock keeps every path and each visible row in sync.
+// A shared 8-second clock keeps every path and each visible row in sync.
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
  document.documentElement.classList.add('drawing-ready');
  const startDrawing=svg=>{svg.classList.add('is-drawing');drawingObserver.unobserve(svg);};

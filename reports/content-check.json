@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-07T13:57:01.261Z",
+  "date": "2026-11-07T14:22:14.664Z",
   "schema": {
     "syntax": "valid",
     "types": [
@@ -19,12 +19,11 @@
     "#socios",
     "#perguntas",
     "#contato",
-    "#visao",
     "#privacidade"
   ],
   "assetsVerified": [
     "/assets/favicon.svg",
-    "/assets/fonts/playfair.ttf",
+    "/assets/fonts/archivo-latin-variable.woff2",
     "/app.js",
     "/assets/brand/logo.webp"
   ],
@@ -32,7 +31,8 @@
     "https://engeprice-site.pages.dev/",
     "https://www.linkedin.com/in/engdiegoborges/",
     "https://www.linkedin.com/company/engeprice-consulting/",
-    "https://www.instagram.com/engeprice/"
+    "https://www.instagram.com/engeprice/",
+    "https://botafogo.guiaserj.com.br/sites"
   ],
   "singleH1": true,
   "noVisiblePlaceholders": true

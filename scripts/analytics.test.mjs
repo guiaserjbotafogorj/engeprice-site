@@ -1,11 +1,11 @@
 import {readFile} from 'node:fs/promises';import vm from 'node:vm';import test from 'node:test';import assert from 'node:assert/strict';
 const source=await readFile('src/app.js','utf8');
-function harness(consent='yes',endpoint='/api/contact'){
+function harness(consent='yes',endpoint='/api/contact',portraits=[]){
  const listeners={};const elements=new Map();const local=new Map([['ep-measurement',consent]]);const session=new Map();
  const make=id=>({hidden:true,textContent:'',value:'',disabled:false,firstChild:{textContent:''},dataset:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},removeAttribute(){},getAttribute(){return'false'},focus(){},addEventListener(ev,fn){listeners[id+':'+ev]=fn;},querySelector(){return make('submit')},reportValidity(){return true},reset(){}});
  const get=id=>{if(!elements.has(id))elements.set(id,make(id));return elements.get(id)};
  get('site-data').textContent=JSON.stringify({endpoint,gtm:'',menu:'Menu',closeMenu:'Fechar menu',success:'Enviado',demoSuccess:'Demonstração',formError:'Erro'});
- const document={getElementById:get,querySelector:s=>get(s),querySelectorAll:()=>[],documentElement:{classList:{add(){}}},addEventListener:(ev,fn)=>listeners['doc:'+ev]=fn,head:{append(){}},createElement:()=>make('script')};
+ const document={getElementById:get,querySelector:s=>get(s),querySelectorAll:selector=>selector==='.portrait-toggle'?portraits:[],documentElement:{classList:{add(){}}},addEventListener:(ev,fn)=>listeners['doc:'+ev]=fn,head:{append(){}},createElement:()=>make('script')};
  const window={dataLayer:[]};const storage=m=>({getItem:k=>m.get(k)||null,setItem:(k,v)=>m.set(k,v)});
  class FakeFormData{constructor(){} *[Symbol.iterator](){yield* Object.entries({name:'Teste',email:'teste@example.com',message:'Contexto de teste de medição',privacy:'on'});}}
  const context={document,window,localStorage:storage(local),sessionStorage:storage(session),location:{search:'?utm_source=teste&utm_campaign=campanha',reload(){}},URLSearchParams,matchMedia:()=>({matches:false,addEventListener(){}}),FormData:FakeFormData,fetch:async()=>({ok:true,json:async()=>({success:true})})};
@@ -14,3 +14,9 @@ function harness(consent='yes',endpoint='/api/contact'){
 test('eventos de CTA, e-mail, sócio e canais opcionais respeitam consentimento',()=>{const h=harness();for(const event of ['cta_click','click_email','click_linkedin_socio','click_phone','click_whatsapp'])h.listeners['doc:click']({target:{closest:()=>({dataset:{event,section:'teste',name:'Sócio'}})}});assert.deepEqual(h.window.dataLayer.map(x=>x.event),['cta_click','click_email','click_linkedin_socio','click_phone','click_whatsapp']);const rejected=harness('no');rejected.listeners['doc:click']({target:{closest:()=>({dataset:{event:'click_email'}})}});assert.equal(rejected.window.dataLayer.length,0);});
 test('lead só dispara após resposta positiva, UTMs persistem, sem PII no evento',async()=>{const h=harness();let sent;h.context.fetch=async(url,opts)=>{sent=JSON.parse(opts.body);return{ok:true,json:async()=>({success:true})}};await h.listeners['contact-form:submit']({preventDefault(){}});assert.equal(sent.utm_source,'teste');assert.equal(h.window.dataLayer.at(-1).event,'generate_lead');assert.equal(h.window.dataLayer.at(-1).email,undefined);});
 test('demonstração não envia requisição nem dispara lead',async()=>{const h=harness('yes','');h.context.fetch=()=>{throw Error('Não pode enviar')};await h.listeners['contact-form:submit']({preventDefault(){}});assert.equal(h.window.dataLayer.length,0);assert.equal(h.elements.get('form-status').textContent,'Demonstração');});
+
+test('ativar e desativar cor mantém estado e rótulo acessíveis',()=>{
+ const attrs=new Map([['aria-pressed','false']]);let activate;let colored=false;
+ const portrait={dataset:{colorLabel:'Ver retrato em cores',monoLabel:'Voltar ao preto e branco'},getAttribute:key=>attrs.get(key),setAttribute:(key,value)=>attrs.set(key,value),classList:{toggle:(name,value)=>{assert.equal(name,'is-color');colored=value}},addEventListener:(event,fn)=>{assert.equal(event,'click');activate=fn}};
+ harness('no','',[portrait]);activate();assert.equal(attrs.get('aria-pressed'),'true');assert.equal(attrs.get('aria-label'),'Voltar ao preto e branco');assert.equal(colored,true);activate();assert.equal(attrs.get('aria-pressed'),'false');assert.equal(attrs.get('aria-label'),'Ver retrato em cores');assert.equal(colored,false);
+});

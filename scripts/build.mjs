@@ -1,51 +1,136 @@
 import {createHash} from 'node:crypto';
-import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
+import {readFile, writeFile, mkdir, cp, rm, readdir} from 'node:fs/promises';
 import {structure} from '../src/drawings.mjs';
 import {checkPlaceholders} from './check-placeholders.mjs';
-const c=JSON.parse(await readFile('content.pt-BR.json','utf8'));
-const config=JSON.parse(await readFile('site.config.json','utf8'));
-const env=process.env;
-const preview=env.PREVIEW?env.PREVIEW!=='false':config.preview;
-const url=(env.SITE_URL||config.url).replace(/\/$/,'');
-const endpoint=env.FORM_ENDPOINT||'';
-if(!preview && (url.includes('pages.dev')||!config.address||!config.phone)) throw new Error('Produção exige domínio definitivo e NAP confirmado.');
-const e=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
-const nl=s=>e(s).replace(/\n/g,'<br>');
-const arrow='<span aria-hidden="true">↗</span>';
-const eyebrow=s=>`<p class="eyebrow">${e(s)}</p>`;
-const cta=(label,section,cls='button')=>`<a class="${cls}" href="#contato" data-event="cta_click" data-section="${section}">${e(label)}${arrow}</a>`;
-const photoVersions={};
-for(const p of c.partners.people)for(const width of [360,640]){const key=`${p.image}-${width}`;photoVersions[key]=createHash('sha256').update(await readFile(`assets/people/${key}.webp`)).digest('hex').slice(0,12);}
-const picture=p=>`<img src="/assets/people/${p.image}-640.webp?v=${photoVersions[p.image+'-640']}" srcset="/assets/people/${p.image}-360.webp?v=${photoVersions[p.image+'-360']} 360w, /assets/people/${p.image}-640.webp?v=${photoVersions[p.image+'-640']} 640w" sizes="(max-width: 700px) 90vw, 420px" width="640" height="640" alt="${e(p.name)}, sócio da Engeprice" loading="lazy" decoding="async">`;
-const addressText=config.address ? (typeof config.address==='string'?config.address:[config.address.streetAddress,config.address.addressLocality,config.address.addressRegion,config.address.postalCode].filter(Boolean).join(', ')) : '';
-const fields=c.ui.formLabels;
-const input=(id,type='text',extra='')=>`<label>${e(fields[id])}<input name="${id}" type="${type}" required maxlength="${id==='email'?254:180}" ${extra}></label>`;
-const select=(id,options)=>`<label>${e(fields[id])}<select name="${id}" required>${options.map((x,i)=>`<option value="${i?e(x):''}">${e(x)}</option>`).join('')}</select></label>`;
-const schema={'@context':'https://schema.org','@graph':[
- {'@type':'ProfessionalService','@id':url+'/#organization',name:config.name,legalName:config.legalName,url,email:config.email,areaServed:{'@type':'Country',name:'Brasil'},knowsAbout:['Engenharia de custos','Estimativas CAPEX','Orçamento executivo','Controle de custos'],sameAs:[config.linkedin,config.instagram],...(config.address?{address:config.address}:{}),...(config.phone?{telephone:config.phone}:{}),hasOfferCatalog:{'@type':'OfferCatalog',name:'Consultoria em engenharia de custos',itemListElement:c.services.cards.map(s=>({'@type':'Offer',itemOffered:{'@type':'Service',name:s.title,description:s.description}}))}},
- ...c.partners.people.map(p=>({'@type':'Person',name:p.name,jobTitle:'Sócio',worksFor:{'@id':url+'/#organization'},description:p.bio.join(' '),...(p.linkedin?{sameAs:[p.linkedin]}:{})})),
- {'@type':'FAQPage',mainEntity:c.faq.items.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))}
+
+const c = JSON.parse(await readFile('content.pt-BR.json', 'utf8'));
+const config = JSON.parse(await readFile('site.config.json', 'utf8'));
+const env = process.env;
+const preview = env.PREVIEW ? env.PREVIEW !== 'false' : config.preview;
+const url = (env.SITE_URL || config.url).replace(/\/$/, '');
+const endpoint = env.FORM_ENDPOINT || '';
+const socialVersion = createHash('sha256').update(await readFile('assets/social-card.png')).digest('hex').slice(0,12);
+if (!preview && (url.includes('pages.dev') || !config.address || !config.phone)) {
+  throw new Error('Produção exige domínio definitivo e NAP confirmado.');
+}
+const e = value => String(value).replace(/[&<>"']/g, x => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[x]));
+const nl = value => e(value).replace(/\n/g, '<br>');
+const label = value => `<p class="section-label">${e(value)}</p>`;
+const contactLink = (text, section, extra = '') => `<a class="text-link ${extra}" href="#contato" data-event="cta_click" data-section="${section}">${e(text)}</a>`;
+const disclosure = (closed, open) => `<span class="disclosure-label" aria-hidden="true"><span class="when-closed">${e(closed)}</span><span class="when-open">${e(open)}</span></span>`;
+const heading = section => `<div class="section-head"><div>${label(section.eyebrow)}<h2>${nl(section.title)}</h2></div>${section.description ? `<p>${e(section.description)}</p>` : ''}</div>`;
+const addressText = config.address ? (typeof config.address === 'string' ? config.address : [config.address.streetAddress, config.address.addressLocality, config.address.addressRegion, config.address.postalCode].filter(Boolean).join(', ')) : '';
+
+// Asset versions invalidate browser caches when a photograph is updated.
+const photoVersions = {};
+for (const person of c.partners.people) {
+  for (const variant of ['360', '640', 'color-360', 'color-640']) {
+    const key = `${person.image}-${variant}`;
+    photoVersions[key] = createHash('sha256').update(await readFile(`assets/people/${key}.webp`)).digest('hex').slice(0, 12);
+  }
+}
+const photoUrl = (person, variant) => `/assets/people/${person.image}-${variant}.webp?v=${photoVersions[person.image+'-'+variant]}`;
+function portrait(person) {
+  const action = c.ui.photoEnable.replace('{name}', person.name);
+  const reset = c.ui.photoDisable.replace('{name}', person.name);
+  return `<figure class="portrait">
+    <button type="button" class="portrait-toggle" aria-pressed="false" aria-label="${e(action)}" aria-describedby="portrait-help" data-color-label="${e(action)}" data-mono-label="${e(reset)}">
+      <img class="portrait-original" src="${photoUrl(person, '640')}" srcset="${photoUrl(person, '360')} 360w, ${photoUrl(person, '640')} 640w" sizes="(max-width: 600px) 90vw, 420px" width="640" height="640" alt="Retrato de ${e(person.name)}, sócio fundador da Engeprice" loading="lazy" decoding="async">
+      <img class="portrait-color" src="${photoUrl(person, 'color-640')}" srcset="${photoUrl(person, 'color-360')} 360w, ${photoUrl(person, 'color-640')} 640w" sizes="(max-width: 600px) 90vw, 420px" width="640" height="640" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    </button>
+    <figcaption>${e(person.caption)}</figcaption>
+  </figure>`;
+}
+const fields = c.ui.formLabels;
+const input = (id, type = 'text', extra = '') => `<div class="field"><label for="field-${id}">${e(fields[id])}</label><input id="field-${id}" name="${id}" type="${type}" required maxlength="${id === 'email' ? 254 : 180}" ${extra}></div>`;
+const select = (id, options) => `<div class="field"><label for="field-${id}">${e(fields[id])}</label><select id="field-${id}" name="${id}" required>${options.map((item, i) => `<option value="${i ? e(item) : ''}">${e(item)}</option>`).join('')}</select></div>`;
+
+const schema = {'@context':'https://schema.org', '@graph':[
+  {'@type':'ProfessionalService', '@id':url+'/#organization', name:config.name, legalName:config.legalName, url, email:config.email,
+    areaServed:{'@type':'Country', name:'Brasil'}, knowsAbout:['Engenharia de custos', 'Estimativas CAPEX', 'Orçamento executivo', 'Controle de custos'],
+    sameAs:[config.linkedin, config.instagram], ...(config.address ? {address:config.address} : {}), ...(config.phone ? {telephone:config.phone} : {}),
+    hasOfferCatalog:{'@type':'OfferCatalog', name:'Consultoria em engenharia de custos', itemListElement:c.services.cards.map(service => ({'@type':'Offer', itemOffered:{'@type':'Service', name:service.title, description:service.description}}))}},
+  ...c.partners.people.map(person => ({'@type':'Person', name:person.name, jobTitle:'Sócio fundador', worksFor:{'@id':url+'/#organization'}, description:person.bio.join(' '), ...(person.linkedin ? {sameAs:[person.linkedin]} : {})})),
+  {'@type':'FAQPage', mainEntity:c.faq.items.map(item => ({'@type':'Question', name:item.q, acceptedAnswer:{'@type':'Answer', text:item.a}}))}
 ]};
-const html=`<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(c.meta.title)}</title><meta name="description" content="${e(c.meta.description)}"><meta name="robots" content="${preview?'noindex, nofollow':'index, follow'}"><link rel="canonical" href="${url}/"><meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:title" content="${e(c.meta.title)}"><meta property="og:description" content="${e(c.meta.description)}"><meta property="og:url" content="${url}/"><meta property="og:image" content="${url}/assets/social-card.png"><meta name="twitter:card" content="summary_large_image">${env.GSC_TOKEN?`<meta name="google-site-verification" content="${e(env.GSC_TOKEN)}">`:''}<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="/assets/fonts/playfair.ttf" as="font" type="font/ttf" crossorigin><style>${await readFile('src/style.css','utf8')}</style><script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script><script id="site-data" type="application/json">${JSON.stringify({endpoint,gtm:env.GTM_ID||'',preview,success:c.contact.success,demoSuccess:c.contact.demoSuccess,formError:c.ui.formError,closeMenu:c.ui.closeMenu,menu:c.ui.menu}).replace(/</g,'\\u003c')}</script><script src="/app.js" defer></script></head><body><a href="#conteudo" class="skip">${e(c.ui.skip)}</a><header class="header"><a href="#inicio" class="brand" aria-label="Engeprice — início"><img src="/assets/brand/logo.webp" width="480" height="138" alt="Engeprice Consulting"></a><nav aria-label="Navegação principal" id="navigation">${c.nav.map(n=>`<a href="#${n.id}">${e(n.label)}</a>`).join('')}${cta(c.hero.primary,'header','nav-contact')}</nav><button class="menu-toggle" aria-controls="navigation" aria-expanded="false">${e(c.ui.menu)} <span aria-hidden="true">☰</span></button></header><main id="conteudo"><section class="hero" id="inicio"><div class="hero-top"><div class="hero-copy">${eyebrow(c.hero.eyebrow)}<h1>${e(c.hero.title)} <em>${e(c.hero.accent)}</em></h1><p class="hero-description">${e(c.hero.description)}</p><div class="hero-actions">${cta(c.hero.primary,'hero')}<a class="text-link" href="#servicos">${e(c.hero.secondary)}<span aria-hidden="true">↓</span></a></div></div><div class="hero-drawing"><div class="drawing-top"><span>EP / 001</span><span>${e(c.hero.drawingNote)}</span><span aria-hidden="true">+</span></div>${structure()}<div class="drawing-bottom"><span class="status-dot"></span>${e(c.hero.drawingLabel)}<span aria-hidden="true">↗</span></div></div></div><div class="hero-bottom">${c.hero.pillars.map((p,i)=>`<div><span class="index">0${i+1}</span><span>${e(p)}</span></div>`).join('')}</div><a href="#visao" class="scroll-link"><span class="scroll-line" aria-hidden="true"></span>${e(c.hero.scroll)}</a></section>
-<section id="visao" class="intro section"><div>${eyebrow(c.intro.eyebrow)}<h2>${nl(c.intro.title)}</h2></div><div class="intro-text reveal"><p>${e(c.intro.description)}</p><p class="muted">${e(c.intro.note)}</p></div></section>
-<section id="servicos" class="services section"><div class="section-head">${eyebrow(c.services.eyebrow)}<h2>${nl(c.services.title)}</h2><p>${e(c.services.description)}</p></div><div class="service-grid">${c.services.cards.map((s,i)=>`<article class="service-card reveal"><div class="card-top"><span>0${i+1}</span><svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3">${i===0?'<path d="M8 52h48M14 45V33h9v12M28 45V23h9v22M42 45V11h9v34M10 26l18-12 13 3 12-12"/>':i===1?'<path d="M14 8h36v48H14zM22 19h20M22 28h20M22 37h12M22 46h20M8 14h12M8 23h12M8 32h12M8 41h12"/>':'<path d="M32 8v45M13 15h38M19 15L8 34h22L19 15ZM45 15L34 34h22L45 15ZM20 54h24M8 34q11 14 22 0M34 34q11 14 22 0"/>'}</svg></div><p class="eyebrow">${e(s.stage)}</p><h3>${e(s.title)}</h3><p>${e(s.description)}</p><ul>${s.items.map(x=>`<li>${e(x)}</li>`).join('')}</ul><p class="audience">${e(s.audience)}</p><a class="card-link" href="#contato" data-event="cta_click" data-section="servico-${i}" aria-label="${e(c.ui.serviceCta)}: ${e(s.title)}">${arrow}</a></article>`).join('')}</div><details class="scope"><summary>${e(c.services.expand)}<span aria-hidden="true">+</span></summary><ol>${c.services.full.map(s=>`<li>${e(s)}</li>`).join('')}</ol></details></section>
-<section class="process section"><div class="process-lead">${eyebrow(c.process.eyebrow)}<h2>${nl(c.process.title)}</h2><p>${e(c.process.description)}</p></div><ol class="process-list">${c.process.steps.map((s,i)=>`<li class="reveal"><span>0${i+1}</span><div><h3>${e(s.title)}</h3><p>${e(s.text)}</p></div></li>`).join('')}</ol></section>
-<section id="experiencia" class="experience section"><div class="section-head">${eyebrow(c.experience.eyebrow)}<h2>${nl(c.experience.title)}</h2><p>${e(c.experience.description)}</p></div><div class="project-grid">${c.experience.projects.map((p,i)=>`<article class="project reveal"><div class="project-art">${structure(p.type)}<span class="project-number">0${i+1} / EP</span></div><p class="eyebrow">${e(p.category)}</p><h3>${e(p.name)}</h3><p>${e(p.text)}</p></article>`).join('')}</div><p class="experience-note">${e(c.experience.note)}</p><div class="segment-list">${c.experience.segments.map(s=>`<span>${e(s)}</span>`).join('')}</div></section>
-<section id="socios" class="partners section"><div class="section-head">${eyebrow(c.partners.eyebrow)}<h2>${nl(c.partners.title)}</h2><p>${e(c.partners.description)}</p></div>${c.partners.people.map((p,i)=>`<article class="partner ${i?'reverse':''}"><div class="portrait reveal">${picture(p)}<div class="portrait-caption"><span>0${i+1} / ${e(config.name)}</span><span aria-hidden="true">+</span></div></div><div class="partner-copy reveal">${eyebrow(p.role)}<h3>${e(p.name)}</h3><p class="specialty">${e(p.specialty)}</p>${p.bio.map(b=>`<p>${e(b)}</p>`).join('')}<div class="tags">${p.tags.map(t=>`<span>${e(t)}</span>`).join('')}</div>${p.linkedin?`<a class="text-link" href="${e(p.linkedin)}" target="_blank" rel="noopener noreferrer" data-event="click_linkedin_socio" data-name="${e(p.name)}">${e(c.ui.linkedin)} ${arrow}</a>`:''}</div></article>`).join('')}</section>
-<section class="tools section"><div>${eyebrow(c.tools.eyebrow)}<h2>${nl(c.tools.title)}</h2><p>${e(c.tools.description)}</p></div><ul>${c.tools.items.map(t=>`<li>${e(t)}</li>`).join('')}</ul></section>
-<section id="perguntas" class="faq section"><div>${eyebrow(c.faq.eyebrow)}<h2>${nl(c.faq.title)}</h2></div><div class="faq-list">${c.faq.items.map((f,i)=>`<details><summary><span class="faq-index">0${i+1}</span>${e(f.q)}<span class="plus" aria-hidden="true">+</span></summary><p>${e(f.a)}</p></details>`).join('')}</div></section>
-<section class="closing section" aria-label="Nosso foco">${c.closing.map((t,i)=>`<p class="reveal">${e(t)}${i===2?'<span aria-hidden="true">↗</span>':''}</p>`).join('')}</section>
-<section id="contato" class="contact section"><div class="contact-copy">${eyebrow(c.contact.eyebrow)}<h2>${nl(c.contact.title)}</h2><p>${e(c.contact.description)}</p><p class="muted">${e(c.contact.audience)}</p><div class="contact-direct">${eyebrow(c.contact.emailLabel)}<a href="mailto:${e(config.email)}" data-event="click_email">${e(config.email)} ${arrow}</a><p class="eyebrow">${e(c.contact.locationLabel)}</p>${config.phone?`<div class="optional-contact">${eyebrow(c.contact.phoneLabel)}<a href="tel:${e(config.phone.replace(/[^+0-9]/g,''))}" data-event="click_phone">${e(config.phone)}</a>${config.whatsappEnabled?`<a href="https://wa.me/${e(config.phone.replace(/[^0-9]/g,''))}" target="_blank" rel="noopener noreferrer" data-event="click_whatsapp">${e(c.contact.whatsappLabel)} ${arrow}</a>`:''}</div>`:''}${addressText?`<div class="optional-contact">${eyebrow(c.contact.addressLabel)}<p>${e(addressText)}</p><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(addressText)}" target="_blank" rel="noopener noreferrer">${e(c.contact.mapLabel)} ${arrow}</a></div>`:''}</div></div><form id="contact-form" class="contact-form"><p class="form-notice">${e(endpoint?c.ui.required:c.contact.previewNotice)}</p><div class="form-grid">${input('name','text','autocomplete="name"')}${input('company','text','autocomplete="organization"')}${input('role','text','autocomplete="organization-title"')}${input('email','email','autocomplete="email"')}${select('demand',c.ui.demandOptions)}${select('phase',c.ui.phaseOptions)}${select('type',c.ui.typeOptions)}${input('size','text',`placeholder="${e(c.ui.sizePlaceholder)}"`)}</div><label>${e(fields.message)}<textarea name="message" rows="4" required minlength="20" maxlength="5000" placeholder="${e(c.ui.messagePlaceholder)}"></textarea></label><label class="honey" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><label class="consent"><input type="checkbox" name="privacy" required><span>${e(c.contact.privacy)} <a href="#privacidade">${e(c.footer.privacy)}</a>.</span></label><button class="button" type="submit">${e(endpoint?c.contact.submit:c.contact.previewSubmit)}${arrow}</button><p id="form-status" role="status" aria-live="polite"></p></form></section></main>
-<footer class="footer section"><div class="footer-main"><div><a class="brand" href="#inicio"><img src="/assets/brand/logo.webp" alt="Engeprice Consulting" width="480" height="138" loading="lazy"></a><p class="footer-tagline">${nl(c.footer.tagline)}</p></div><div class="footer-links">${c.nav.map(n=>`<a href="#${n.id}">${e(n.label)}</a>`).join('')}<a href="${e(config.linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn ${arrow}</a><a href="${e(config.instagram)}" target="_blank" rel="noopener noreferrer">Instagram ${arrow}</a></div><div class="newsletter"><h3>${e(c.footer.newsletter)}</h3><p>${e(c.footer.newsletterText)}</p><a href="mailto:${e(config.email)}?subject=Cadastro%20de%20novidades" data-event="click_email">${e(c.footer.newsletterLink)} ${arrow}</a></div></div><details id="privacidade"><summary>${e(c.ui.privacyTitle)}</summary><p>${e(c.ui.privacyText)}</p></details><div class="footer-bottom"><span>${e(config.legalName)}<br>CNPJ ${e(config.cnpj)}${addressText?`<br>${e(addressText)}`:''}${config.phone?`<br>${e(config.phone)}`:''}</span><span>© ${new Date().getFullYear()} ${e(config.name)}. ${e(c.footer.copyright)}</span><button type="button" id="cookie-settings">${e(c.footer.cookies)}</button></div>${preview?`<p class="preview-label">${e(c.footer.preview)}</p>`:''}</footer><aside class="cookie-banner" id="cookie-banner" aria-label="${e(c.ui.cookieTitle)}" hidden><p>${e(c.ui.cookieText)}</p><div><button type="button" id="cookie-reject">${e(c.ui.cookieReject)}</button><button type="button" id="cookie-accept">${e(c.ui.cookieAccept)}</button></div></aside></body></html>`;
-await mkdir('dist',{recursive:true});
-await writeFile('dist/index.html',html);
-await cp('src/app.js','dist/app.js');
-await cp('assets','dist/assets',{recursive:true});
-for(const f of ['dist/assets/brand/logo-original.png','dist/assets/people/diego-original.png','dist/assets/people/renato-original.png']) await rm(f,{force:true});
-await writeFile('dist/robots.txt',preview?'User-agent: *\nDisallow: /\n':`User-agent: *\nAllow: /\nSitemap: ${url}/sitemap.xml\n`);
-await writeFile('dist/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${preview?'':`<url><loc>${url}/</loc></url>`}</urlset>`);
-await writeFile('dist/llms.txt',`# Engeprice\n\n${preview?'Prévia de proposta, não é o site oficial.\n\n':''}Site oficial: ${config.officialUrl}\n\nConsultoria brasileira em engenharia de custos, com base em Vitória/ES e atuação nacional.\n\n## Serviços\n${c.services.full.map(s=>'- '+s).join('\n')}\n\nContato: ${config.email}\n`);
-await writeFile('dist/_headers',`/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com${endpoint&&endpoint.startsWith('https:')?' '+new URL(endpoint).origin:''}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'\n${preview?'  X-Robots-Tag: noindex, nofollow\n':''}/assets/*\n  Cache-Control: public, max-age=86400\n`);
-await writeFile('dist/404.html',`<!doctype html><html lang="pt-BR"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Página não encontrada | Engeprice</title><body style="font:20px system-ui;background:#0b1517;color:#f5f3ed;padding:10vw"><h1>Página não encontrada.</h1><a style="color:#f3cc51" href="/">Voltar à Engeprice →</a></body></html>`);
+
+function header() {
+  return `<a href="#conteudo" class="skip">${e(c.ui.skip)}</a>
+  <header class="header">
+    <div class="brand-lockup"><a href="#inicio" class="brand" aria-label="${e(config.name)} — início"><img src="/assets/brand/logo.webp" width="480" height="138" alt="${e(config.name)} Consulting"></a>${preview ? `<p class="proposal-label">${e(c.proposal.label)}</p>` : ''}</div>
+    <nav aria-label="Navegação principal" id="navigation">${c.nav.map(item => `<a href="#${item.id}">${e(item.label)}</a>`).join('')}${contactLink('Contato', 'header', 'nav-contact')}</nav>
+    <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false">${e(c.ui.menu)}</button>
+  </header>`;
+}
+function hero() {
+  return `<section class="hero" id="inicio">
+    <div class="hero-top"><div class="hero-copy">${label(c.hero.eyebrow)}<h1>${e(c.hero.title)}</h1><p class="hero-description">${e(c.hero.description)}</p><div class="hero-actions">${contactLink(c.hero.primary, 'hero', 'primary-link')}<a class="text-link" href="#servicos">${e(c.hero.secondary)}</a></div></div>
+    <figure class="hero-drawing">${structure()}<figcaption>${e(c.hero.drawingLabel)}</figcaption></figure></div>
+    <ul class="hero-pillars">${c.hero.pillars.map(item => `<li>${e(item)}</li>`).join('')}</ul>
+  </section>`;
+}
+function intro() {
+  return `<section id="visao" class="intro section"><div>${label(c.intro.eyebrow)}<h2>${e(c.intro.title)}</h2></div><div class="intro-text"><p>${e(c.intro.description)}</p><p class="muted">${e(c.intro.note)}</p></div></section>`;
+}
+function services() {
+  return `<section id="servicos" class="services section">${heading(c.services)}<div class="service-list">${c.services.cards.map((service, i) => `<article class="service-row"><div class="service-title"><p class="service-stage">${e(service.stage)}</p><h3>${e(service.title)}</h3></div><div class="service-description"><p>${e(service.description)}</p><p class="audience">${e(service.audience)}</p>${contactLink(service.link, 'servico-'+i)}</div><ul>${service.items.map(item => `<li>${e(item)}</li>`).join('')}</ul></article>`).join('')}</div>
+    <details class="scope"><summary>${e(c.services.expand)}${disclosure(c.ui.showScope, c.ui.hideScope)}</summary><ul>${c.services.full.map(item => `<li>${e(item)}</li>`).join('')}</ul></details></section>`;
+}
+function processSection() {
+  return `<section class="process section"><div class="process-lead">${label(c.process.eyebrow)}<h2>${e(c.process.title)}</h2><p>${e(c.process.description)}</p></div><ol class="process-list">${c.process.steps.map(item => `<li><h3>${e(item.title)}</h3><p>${e(item.text)}</p></li>`).join('')}</ol></section>`;
+}
+function experience() {
+  return `<section id="experiencia" class="experience section">${heading(c.experience)}<div class="project-list">${c.experience.projects.map(project => `<article class="project"><div><p class="project-category">${e(project.category)}</p><h3>${e(project.name)}</h3></div><p>${e(project.text)}</p></article>`).join('')}</div><ul class="segment-list">${c.experience.segments.map(item => `<li>${e(item)}</li>`).join('')}</ul></section>`;
+}
+function partners() {
+  return `<section id="socios" class="partners section">${heading(c.partners)}<p class="portrait-help" id="portrait-help">${e(c.partners.photoHelp)} ${e(c.partners.colorNotice)}</p>${c.partners.people.map((person, i) => `<article class="partner ${i ? 'reverse' : ''}">${portrait(person)}<div class="partner-copy">${label(person.role)}<h3>${e(person.name)}</h3><p class="specialty">${e(person.specialty)}</p>${person.bio.map(paragraph => `<p>${e(paragraph)}</p>`).join('')}<ul class="credentials">${person.tags.map(tag => `<li>${e(tag)}</li>`).join('')}</ul>${person.linkedin ? `<a class="text-link" href="${e(person.linkedin)}" target="_blank" rel="noopener noreferrer" data-event="click_linkedin_socio" data-name="${e(person.name)}">${e(c.ui.linkedin)}</a>` : ''}</div></article>`).join('')}</section>`;
+}
+function tools() {
+  return `<section class="tools section"><div>${label(c.tools.eyebrow)}<h2>${e(c.tools.title)}</h2><p>${e(c.tools.description)}</p></div><ul>${c.tools.items.map(item => `<li>${e(item)}</li>`).join('')}</ul></section>`;
+}
+function faq() {
+  return `<section id="perguntas" class="faq section"><div>${label(c.faq.eyebrow)}<h2>${e(c.faq.title)}</h2></div><div class="faq-list">${c.faq.items.map(item => `<details><summary><span>${e(item.q)}</span>${disclosure(c.ui.readAnswer, c.ui.closeAnswer)}</summary><p>${e(item.a)}</p></details>`).join('')}</div></section>`;
+}
+function confirmedContact() {
+  return `${config.phone ? `<div class="optional-contact">${label(c.contact.phoneLabel)}<a class="text-link" href="tel:${e(config.phone.replace(/[^+0-9]/g, ''))}" data-event="click_phone">${e(config.phone)}</a>${config.whatsappEnabled ? `<a class="text-link" href="https://wa.me/${e(config.phone.replace(/[^0-9]/g, ''))}" target="_blank" rel="noopener noreferrer" data-event="click_whatsapp">${e(c.contact.whatsappLabel)}</a>` : ''}</div>` : ''}${addressText ? `<div class="optional-contact">${label(c.contact.addressLabel)}<p>${e(addressText)}</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(addressText)}" target="_blank" rel="noopener noreferrer">${e(c.contact.mapLabel)}</a></div>` : ''}`;
+}
+function contact() {
+  const privacyText = endpoint ? c.contact.privacyProduction : c.contact.privacy;
+  return `<section id="contato" class="contact section"><div class="contact-copy">${label(c.contact.eyebrow)}<h2>${e(c.contact.title)}</h2><p>${e(c.contact.description)}</p><p class="muted">${e(c.contact.audience)}</p><div class="contact-direct">${label(c.contact.emailLabel)}<a class="text-link" href="mailto:${e(config.email)}" data-event="click_email">${e(config.email)}</a><p>${e(c.contact.locationLabel)}</p>${confirmedContact()}</div></div>
+    <form id="contact-form" class="contact-form" method="post" action="/api/contact"><p class="form-notice">${e(endpoint ? c.ui.required : c.contact.previewNotice)}</p><div class="form-grid">${input('name', 'text', 'autocomplete="name"')}${input('company', 'text', 'autocomplete="organization"')}${input('role', 'text', 'autocomplete="organization-title"')}${input('email', 'email', 'autocomplete="email"')}${select('demand', c.ui.demandOptions)}${select('phase', c.ui.phaseOptions)}${select('type', c.ui.typeOptions)}${input('size', 'text', `placeholder="${e(c.ui.sizePlaceholder)}"`)}</div>
+    <div class="field message-field"><label for="field-message">${e(fields.message)}</label><textarea id="field-message" name="message" rows="4" required minlength="20" maxlength="5000" placeholder="${e(c.ui.messagePlaceholder)}"></textarea></div>
+    <label class="honey" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div class="consent"><input id="privacy-consent" type="checkbox" name="privacy" required><div><label for="privacy-consent">${e(privacyText)}</label> <a href="#privacidade">${e(c.footer.privacy)}</a>.</div></div>
+    <noscript><p class="form-notice">${e(c.ui.noScriptForm)}</p></noscript><button class="action-link" type="submit" disabled>${e(endpoint ? c.contact.submit : c.contact.previewSubmit)}</button><p id="form-status" role="status" aria-live="polite"></p></form></section>`;
+}
+function footer() {
+  return `<footer class="footer section"><div class="footer-main"><div><a class="brand" href="#inicio"><img src="/assets/brand/logo.webp" alt="${e(config.name)} Consulting" width="480" height="138" loading="lazy"></a><p class="footer-tagline">${nl(c.footer.tagline)}</p></div><nav class="footer-links" aria-label="Links do rodapé">${c.nav.map(item => `<a href="#${item.id}">${e(item.label)}</a>`).join('')}<a href="${e(config.linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="${e(config.instagram)}" target="_blank" rel="noopener noreferrer">Instagram</a></nav><div class="newsletter"><h3>${e(c.footer.newsletter)}</h3><p>${e(c.footer.newsletterText)}</p><a class="text-link" href="mailto:${e(config.email)}?subject=Cadastro%20de%20novidades" data-event="click_email">${e(c.footer.newsletterLink)}</a></div></div>
+    <details id="privacidade"><summary>${e(c.ui.privacyTitle)}</summary><p>${e(c.ui.privacyText)}</p></details><div class="footer-bottom"><p>${e(config.legalName)}<br>CNPJ ${e(config.cnpj)}${addressText ? `<br>${e(addressText)}` : ''}${config.phone ? `<br>${e(config.phone)}` : ''}</p><p>© ${new Date().getFullYear()} ${e(config.name)}. ${e(c.footer.copyright)}</p><button class="action-link" type="button" id="cookie-settings">${e(c.footer.cookies)}</button></div>
+    <div class="footer-credit">${preview ? `<p>${e(c.footer.preview)}</p>` : ''}<p>${e(c.footer.creditPrefix)} <a href="${e(config.developer.url)}" target="_blank" rel="noopener noreferrer">${e(config.developer.name)}</a></p></div></footer>
+    <aside class="cookie-banner" id="cookie-banner" aria-label="${e(c.ui.cookieTitle)}" hidden><p>${e(c.ui.cookieText)}</p><div><button class="action-link" type="button" id="cookie-reject">${e(c.ui.cookieReject)}</button><button class="action-link" type="button" id="cookie-accept">${e(c.ui.cookieAccept)}</button></div></aside>`;
+}
+const clientConfig = {endpoint, gtm:env.GTM_ID || '', preview, success:c.contact.success, demoSuccess:c.contact.demoSuccess, formError:c.ui.formError, closeMenu:c.ui.closeMenu, menu:c.ui.menu};
+const html = `<!doctype html><html lang="pt-BR"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${e(c.meta.title)}</title><meta name="description" content="${e(c.meta.description)}"><meta name="robots" content="${preview ? 'noindex, nofollow' : 'index, follow'}"><link rel="canonical" href="${url}/">
+<meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:title" content="${e(c.meta.title)}"><meta property="og:description" content="${e(c.meta.description)}"><meta property="og:url" content="${url}/"><meta property="og:image" content="${url}/assets/social-card.png?v=${socialVersion}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${e(c.meta.socialAlt)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${e(c.meta.title)}"><meta name="twitter:description" content="${e(c.meta.description)}"><meta name="twitter:image" content="${url}/assets/social-card.png?v=${socialVersion}">
+${env.GSC_TOKEN ? `<meta name="google-site-verification" content="${e(env.GSC_TOKEN)}">` : ''}<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="/assets/fonts/archivo-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+<style>${await readFile('src/style.css', 'utf8')}</style><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script><script id="site-data" type="application/json">${JSON.stringify(clientConfig).replace(/</g, '\\u003c')}</script><script src="/app.js" defer></script>
+</head><body>${header()}<main id="conteudo" tabindex="-1">${hero()}${intro()}${services()}${processSection()}${experience()}${partners()}${tools()}${faq()}${contact()}</main>${footer()}</body></html>`;
+
+await mkdir('dist', {recursive:true});
+await writeFile('dist/index.html', html);
+await cp('src/app.js', 'dist/app.js');
+await cp('assets', 'dist/assets', {recursive:true});
+// Keep originals and generation sources in the repository, outside the published assets.
+for (const file of await readdir('dist/assets/people')) {
+  if (file.endsWith('-original.png') || file.endsWith('-source.png')) await rm('dist/assets/people/'+file);
+}
+await rm('dist/assets/brand/logo-original.png', {force:true});
+for (const file of ['heebo.ttf', 'playfair.ttf', 'Heebo-OFL.txt', 'Playfair-OFL.txt']) await rm('dist/assets/fonts/'+file, {force:true});
+await writeFile('dist/robots.txt', preview ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${url}/sitemap.xml\n`);
+await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${preview ? '' : `<url><loc>${url}/</loc></url>`}</urlset>`);
+await writeFile('dist/llms.txt', `# Engeprice\n\n${preview ? 'Proposta conceitual de renovação, não é o site oficial.\n\n' : ''}Site oficial: ${config.officialUrl}\n\nConsultoria brasileira em engenharia de custos, com base em Vitória/ES e atuação nacional.\n\n## Serviços\n${c.services.full.map(item => '- '+item).join('\n')}\n\nContato: ${config.email}\n`);
+await writeFile('dist/_headers', `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com${endpoint && endpoint.startsWith('https:') ? ' '+new URL(endpoint).origin : ''}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'\n${preview ? '  X-Robots-Tag: noindex, nofollow\n' : ''}/assets/*\n  Cache-Control: public, max-age=86400\n`);
+await writeFile('dist/404.html', `<!doctype html><html lang="pt-BR"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Página não encontrada | Engeprice</title><style>@font-face{font-family:Archivo;src:url(/assets/fonts/archivo-latin-variable.woff2) format('woff2');font-display:swap}</style><body style="font:20px Archivo,Arial,sans-serif;background:#0b1517;color:white;padding:10vw">${preview ? `<p>${e(c.proposal.label)}</p>` : ''}<h1>${e(c.ui.notFoundTitle)}</h1><a style="color:#f3cc51" href="/">${e(c.ui.notFoundLink)}</a></body></html>`);
 await checkPlaceholders();
-console.log(`Build pronto: dist/ — ${preview?'prévia noindex':'produção indexável'}, formulário ${endpoint?'configurado':'demonstrativo'}.`);
+console.log(`Build pronto: dist/ — ${preview ? 'proposta conceitual noindex' : 'produção indexável'}, formulário ${endpoint ? 'configurado' : 'demonstrativo'}.`);

@@ -13,5 +13,14 @@
   "whatsappEnabled": false,
   "linkedin": "https://www.linkedin.com/company/engeprice-consulting/",
   "instagram": "https://www.instagram.com/engeprice/",
-  "pending": {"address":"[CONFIRMAR]", "phone":"[CONFIRMAR]", "budgetVolume":"[CONFIRMAR]", "renatoLinkedin":"[CONFIRMAR]"}
+  "pending": {
+    "address": "[CONFIRMAR]",
+    "phone": "[CONFIRMAR]",
+    "budgetVolume": "[CONFIRMAR]",
+    "renatoLinkedin": "[CONFIRMAR]"
+  },
+  "developer": {
+    "name": "Guia-se Botafogo",
+    "url": "https://botafogo.guiaserj.com.br/sites"
+  }
 }

@@ -1,6 +1,6 @@
 # Engeprice — proposta de renovação
 
-Página institucional estática em português para apresentação do redesign. Preserva a paleta e as famílias tipográficas identificadas no site atual, o logo e os retratos públicos. Conteúdo técnico revisado, desenhos SVG próprios, animações leves, FAQ e triagem de contato.
+Página institucional estática em português para apresentação do redesign. Preserva a paleta da marca e o logo. A revisão adota Archivo variável, links textuais sem setas e retratos com colorização conceitual sobre as fotos originais. Conteúdo técnico revisado, desenhos SVG próprios, animações leves, FAQ e triagem de contato.
 
 - Prévia: https://engeprice-site.pages.dev/
 - Repositório: https://github.com/guiaserjbotafogorj/engeprice-site
@@ -27,11 +27,13 @@ npm run check:placeholders
 - `content.pt-BR.json`: copy, FAQ, serviços, currículos e rótulos.
 - `site.config.json`: identidade, canais e flags; dados divergentes ficam nulos e não são publicados.
 - `src/style.css`: tokens, layouts, estados e movimento reduzido.
-- `src/drawings.mjs`: desenhos técnicos conceituais, sem representar projetos executivos reais.
+- `src/drawings.mjs`: desenho estrutural conceitual da abertura, sem representar um empreendimento real.
+- `REVISAO-DESIGN.md`: direção visual e critérios da revisão.
+- `docs/COLORIZACAO.md`: fontes, saídas e prompt dos retratos; originais preservados.
 - `scripts/build.mjs`: composição das seções e geração dos metadados/JSON-LD/arquivos técnicos.
 - `assets/brand/`: arquivos da marca e espaço reservado para o manual.
 
-As seções são independentes na composição e podem ser extraídas para páginas futuras. O blog não faz parte desta versão. `dist/` é a saída gerada, também versionada para facilitar revisão e comparação.
+As seções são funções independentes na composição e podem ser extraídas para páginas futuras. O blog não faz parte desta versão. `dist/` é a saída gerada, também versionada para facilitar revisão e comparação.
 
 ## Cloudflare Pages
 

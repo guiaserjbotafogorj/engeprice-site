@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "Engeprice | Engenharia de custos para obras de grande porte",
-    "description": "Consultoria em engenharia de custos: estimativas, orçamentos executivos e apoio técnico em pleitos. Conheça a experiência dos sócios da Engeprice."
+    "description": "Consultoria em engenharia de custos: estimativas, orçamentos executivos e apoio técnico em pleitos. Conheça a experiência dos sócios da Engeprice.",
+    "socialAlt": "Engeprice. Engenharia de custos para obras de grande porte. Proposta conceitual de renovação."
   },
   "nav": [
     {
@@ -22,64 +23,64 @@
     }
   ],
   "hero": {
-    "eyebrow": "CONSULTORIA EM ENGENHARIA DE CUSTOS",
-    "title": "Engenharia de custos para",
-    "accent": "decisões de grande porte.",
-    "description": "Da viabilidade ao orçamento executivo. Do controle de custos à fundamentação de pleitos. Rigor técnico para cada fase do seu empreendimento.",
+    "eyebrow": "Consultoria em engenharia de custos",
+    "title": "Engenharia de custos para obras de grande porte.",
+    "description": "Estimativas, orçamentos executivos e apoio técnico em pleitos. Consultoria conduzida pelos sócios para as decisões de investimento, execução e gestão contratual.",
     "primary": "Fale com a Engeprice",
-    "secondary": "Conheça nossa atuação",
+    "secondary": "Conheça os serviços",
     "pillars": [
-      "Experiência em obras especiais",
+      "Obras de infraestrutura, indústria e edificações",
       "Atuação direta dos sócios",
-      "Do estudo de viabilidade ao pleito"
+      "Da viabilidade à gestão contratual"
     ],
-    "drawingLabel": "CADA DECISÃO TEM UMA ESTRUTURA.",
-    "drawingNote": "ESTUDO CONCEITUAL / ENGENHARIA DE CUSTOS",
-    "scroll": "Explore nossa atuação"
+    "drawingLabel": "Estudo gráfico de uma estrutura. Ilustração conceitual, sem vínculo com os empreendimentos citados."
   },
   "intro": {
-    "eyebrow": "O CUSTO É PARTE DA ESTRATÉGIA",
-    "title": "Obras complexas.\nFundamentos claros.",
-    "description": "Um orçamento precisa refletir como a obra será executada. Traduzimos informações de projeto e de mercado em uma estrutura de custos que considera as particularidades do seu empreendimento.",
+    "eyebrow": "A Engeprice",
+    "title": "O orçamento começa pela compreensão da obra.",
+    "description": "Projetos, métodos de execução e referências de mercado precisam conversar. A Engeprice organiza essas informações em uma estrutura de custos que considera as particularidades de cada empreendimento.",
     "note": "Consultoria sob medida para empresas, investidores e equipes de engenharia."
   },
   "services": {
-    "eyebrow": "01 / NOSSA ATUAÇÃO",
-    "title": "Precisão em cada\netapa do projeto.",
-    "description": "O escopo acompanha o desafio. A análise técnica sustenta a decisão.",
+    "eyebrow": "Serviços",
+    "title": "A análise adequada à fase do empreendimento.",
+    "description": "Do investimento inicial à discussão contratual, o escopo é definido a partir da demanda da empresa.",
     "cards": [
       {
         "title": "Estimativas de custos",
-        "stage": "ANTES DE INVESTIR",
+        "stage": "Viabilidade e investimento",
         "description": "Uma base técnica para avaliar cenários e estruturar a viabilidade do empreendimento.",
         "items": [
           "Estimativas de investimento (CAPEX)",
           "Premissas e parâmetros de custos",
           "Análise de alternativas e cenários"
         ],
-        "audience": "Para investidores e equipes de desenvolvimento."
+        "audience": "Para investidores e equipes de desenvolvimento.",
+        "link": "Conversar sobre estimativas"
       },
       {
         "title": "Orçamento executivo",
-        "stage": "ANTES DE EXECUTAR",
+        "stage": "Planejamento e contratação",
         "description": "Do quantitativo à composição de preços: uma visão detalhada do custo da obra.",
         "items": [
           "EAP e levantamento de quantitativos",
           "Composições, cotações e BDI",
           "Histogramas e relatórios personalizados"
         ],
-        "audience": "Para construtoras, contratantes e equipes de engenharia."
+        "audience": "Para construtoras, contratantes e equipes de engenharia.",
+        "link": "Conversar sobre orçamento executivo"
       },
       {
         "title": "Disputas e pleitos",
-        "stage": "AO LONGO DO CONTRATO",
+        "stage": "Execução e gestão contratual",
         "description": "Fundamentação de custos para aditivos, reequilíbrios e esclarecimentos técnicos.",
         "items": [
           "Apoio técnico em pleitos e aditivos",
           "Análise de reequilíbrio econômico-financeiro",
           "Esclarecimentos perante órgãos de controle"
         ],
-        "audience": "Para gestores de contratos e equipes técnicas."
+        "audience": "Para gestores de contratos e equipes técnicas.",
+        "link": "Conversar sobre pleitos"
       }
     ],
     "expand": "Explore o escopo completo de serviços",
@@ -93,9 +94,9 @@
     ]
   },
   "process": {
-    "eyebrow": "A LÓGICA DO TRABALHO",
-    "title": "Entender. Estruturar.\nFundamentar.",
-    "description": "Cada empreendimento tem premissas próprias. A conversa inicial é o ponto de partida para definir o escopo adequado.",
+    "eyebrow": "Forma de trabalho",
+    "title": "Primeiro, entender o contexto.",
+    "description": "A proposta de atendimento parte de uma conversa técnica para definir o escopo, as informações necessárias e as entregas. Este fluxo será validado com os sócios.",
     "steps": [
       {
         "title": "Diagnóstico",
@@ -116,34 +117,29 @@
     ]
   },
   "experience": {
-    "eyebrow": "02 / EXPERIÊNCIA DOS SÓCIOS",
-    "title": "Repertório construído\nem grandes desafios.",
-    "description": "Experiência profissional dos fundadores em empreendimentos de infraestrutura, indústria, energia e edificações.",
-    "note": "As referências apresentadas integram a trajetória profissional dos sócios e não representam, necessariamente, contratos da Engeprice.",
+    "eyebrow": "Experiência",
+    "title": "Obras que integram a trajetória dos sócios.",
+    "description": "Atuação profissional em empreendimentos de infraestrutura, indústria e energia. As referências descrevem a experiência dos fundadores, e não um portfólio de contratos da Engeprice.",
     "projects": [
       {
         "name": "PROSUB",
-        "category": "INFRAESTRUTURA NAVAL",
-        "text": "Complexo naval para submarinos, em Itaguaí, Rio de Janeiro.",
-        "type": "naval"
+        "category": "Infraestrutura naval",
+        "text": "Complexo naval para submarinos, em Itaguaí, Rio de Janeiro."
       },
       {
         "name": "Angra 3",
-        "category": "ENERGIA NUCLEAR",
-        "text": "Assessoria de custos na reorçamentação da usina nuclear.",
-        "type": "nuclear"
+        "category": "Energia nuclear",
+        "text": "Assessoria de custos na reorçamentação da usina nuclear."
       },
       {
         "name": "Metrô / Linha 4",
-        "category": "MOBILIDADE URBANA",
-        "text": "Participação em projeto de mobilidade urbana no Rio de Janeiro.",
-        "type": "metro"
+        "category": "Mobilidade urbana",
+        "text": "Participação em projeto de mobilidade urbana no Rio de Janeiro."
       },
       {
         "name": "PLANGÁS",
-        "category": "ÓLEO E GÁS",
-        "text": "Atuação em orçamento e acompanhamento de custos na Refinaria Reduc/RJ.",
-        "type": "industrial"
+        "category": "Óleo e gás",
+        "text": "Atuação em orçamento e acompanhamento de custos na Refinaria Reduc/RJ."
       }
     ],
     "segments": [
@@ -153,13 +149,13 @@
     ]
   },
   "partners": {
-    "eyebrow": "03 / QUEM CONDUZ",
-    "title": "A experiência tem nome.\nE participa do trabalho.",
-    "description": "Conheça os sócios que estão à frente da Engeprice.",
+    "eyebrow": "Sócios",
+    "title": "Quem está à frente do trabalho.",
+    "description": "Formação e experiência de Diego Borges e Renato Carvalhal.",
     "people": [
       {
         "name": "Diego Borges",
-        "role": "SÓCIO / ENGENHARIA DE CUSTOS",
+        "role": "Sócio fundador",
         "specialty": "Orçamentos e administração contratual.",
         "bio": [
           "Experiência em obras de infraestrutura de grande porte, incluindo o complexo naval do PROSUB e assessoria de custos na reorçamentação de Angra 3.",
@@ -171,11 +167,12 @@
           "Docência"
         ],
         "image": "diego",
-        "linkedin": "https://www.linkedin.com/in/engdiegoborges/"
+        "linkedin": "https://www.linkedin.com/in/engdiegoborges/",
+        "caption": "Diego Borges, sócio fundador da Engeprice."
       },
       {
         "name": "Renato Carvalhal",
-        "role": "SÓCIO / PLANEJAMENTO E CUSTOS",
+        "role": "Sócio fundador",
         "specialty": "Planejamento e controle de custos.",
         "bio": [
           "Experiência em orçamento e acompanhamento de custos nos setores de óleo e gás, infraestrutura e mobilidade urbana, com participação no PLANGÁS, Metrô Linha 4, PROSUB e Angra 3.",
@@ -187,14 +184,17 @@
           "Gestão de resultados"
         ],
         "image": "renato",
-        "linkedin": null
+        "linkedin": null,
+        "caption": "Renato Carvalhal, sócio fundador da Engeprice."
       }
-    ]
+    ],
+    "photoHelp": "Passe o mouse ou toque na foto para ver em cores.",
+    "colorNotice": "Retratos com colorização conceitual."
   },
   "tools": {
-    "eyebrow": "REFERÊNCIAS E FERRAMENTAS",
-    "title": "Conhecimento técnico.\nBases reconhecidas.",
-    "description": "Referências públicas e ferramentas de orçamentação utilizadas conforme o escopo do trabalho.",
+    "eyebrow": "Referências técnicas",
+    "title": "Bases e ferramentas de orçamento.",
+    "description": "A escolha considera o tipo de obra, as exigências do contratante e o escopo de cada análise.",
     "items": [
       "SINAPI",
       "SICRO",
@@ -204,8 +204,8 @@
     ]
   },
   "faq": {
-    "eyebrow": "04 / PERGUNTAS FREQUENTES",
-    "title": "Clareza antes\nda primeira conversa.",
+    "eyebrow": "Perguntas frequentes",
+    "title": "Antes de conversar com a equipe.",
     "items": [
       {
         "q": "O que é engenharia de custos?",
@@ -238,46 +238,45 @@
     ]
   },
   "contact": {
-    "eyebrow": "05 / VAMOS CONVERSAR",
-    "title": "Todo projeto começa\ncom uma boa pergunta.",
-    "description": "Conte o contexto do seu empreendimento. A primeira análise é entender como a engenharia de custos pode contribuir.",
+    "eyebrow": "Contato",
+    "title": "Conte o contexto do seu empreendimento.",
+    "description": "Informe o tipo de demanda, a fase e o porte da obra. Essas informações ajudam a preparar a conversa técnica.",
     "audience": "Atendimento voltado a empresas, investidores e equipes responsáveis por empreendimentos de engenharia.",
-    "emailLabel": "PREFERE E-MAIL?",
-    "locationLabel": "BASE EM VITÓRIA, ES / ATUAÇÃO NACIONAL",
+    "emailLabel": "Contato por e-mail",
+    "locationLabel": "Vitória, ES. Atuação nacional.",
     "previewNotice": "Esta é uma prévia para apresentação. O envio de formulários ainda não está habilitado. Para contato real, utilize o e-mail institucional.",
     "submit": "Enviar contexto do projeto",
     "previewSubmit": "Validar preenchimento",
-    "privacy": "Li o aviso de privacidade e estou ciente do uso dos dados para responder à minha solicitação.",
+    "privacy": "Li o aviso de privacidade. Nesta proposta, os dados preenchidos ficam apenas no navegador e não são enviados.",
     "success": "Recebemos sua mensagem. A equipe Engeprice retornará em breve.",
     "demoSuccess": "Preenchimento validado. Nesta prévia, nenhum dado foi enviado. Para contato real, utilize contato@engeprice.com.br.",
-    "phoneLabel": "TELEFONE",
-    "addressLabel": "ENDEREÇO",
+    "phoneLabel": "Telefone",
+    "addressLabel": "Endereço",
     "mapLabel": "Ver localização no mapa",
-    "whatsappLabel": "Conversar pelo WhatsApp"
+    "whatsappLabel": "Conversar pelo WhatsApp",
+    "privacyProduction": "Li o aviso de privacidade e estou ciente do uso dos dados para responder à minha solicitação."
   },
   "footer": {
-    "tagline": "Rigor técnico.\nDecisões fundamentadas.",
+    "tagline": "Engenharia de custos.\nConsultoria sob medida.",
     "copyright": "Todos os direitos reservados.",
     "privacy": "Privacidade",
     "cookies": "Preferências de medição",
-    "preview": "Prévia de renovação / apresentação para aprovação",
+    "preview": "Proposta conceitual de renovação. Apresentação para aprovação.",
     "newsletter": "Novidades da Engeprice",
-    "newsletterText": "Quer receber novidades? Solicite seu cadastro pelo e-mail institucional.",
-    "newsletterLink": "Solicitar cadastro por e-mail"
+    "newsletterText": "Para solicitar o recebimento de novidades, escreva para a equipe. O cadastro não é realizado por este site.",
+    "newsletterLink": "Solicitar cadastro por e-mail",
+    "creditPrefix": "Desenvolvido pela"
   },
   "ui": {
     "linkedin": "Perfil no LinkedIn",
     "menu": "Menu",
     "closeMenu": "Fechar menu",
     "skip": "Ir para o conteúdo",
-    "serviceCta": "Conversar sobre este serviço",
-    "scopeLabel": "ESCOPO",
-    "audienceLabel": "PARA QUEM É",
     "privacyTitle": "Privacidade e uso de dados",
-    "privacyText": "Nesta prévia, o formulário apenas valida o preenchimento no seu navegador: não envia nem armazena os dados informados. O e-mail abre seu aplicativo de mensagens. A produção depende da definição de responsável, canal de direitos, serviço de envio e prazo de retenção. Preferências de medição e parâmetros de campanha usam armazenamento local ou de sessão. A medição opcional só é ativada com consentimento e configuração de GTM.",
+    "privacyText": "Nesta proposta conceitual, o formulário apenas valida o preenchimento no navegador: não envia nem armazena os dados informados. O link de e-mail abre seu aplicativo de mensagens. As preferências de medição ficam no navegador; os parâmetros de campanha podem permanecer durante a sessão. A medição opcional só é ativada com consentimento e configuração própria.",
     "cookieText": "Podemos usar medição opcional para entender a navegação. Sua escolha não afeta o acesso ao site.",
     "cookieAccept": "Permitir medição",
-    "cookieReject": "Somente necessários",
+    "cookieReject": "Não permitir medição",
     "cookieTitle": "Sua escolha de privacidade",
     "formLabels": {
       "name": "Nome",
@@ -316,11 +315,19 @@
     "messagePlaceholder": "Descreva o empreendimento, o desafio e as informações disponíveis.",
     "sizePlaceholder": "Ex.: complexo industrial, extensão ou área estimada",
     "required": "Todos os campos são obrigatórios.",
-    "formError": "Não foi possível enviar. Tente novamente ou utilize o e-mail institucional."
+    "formError": "Não foi possível enviar. Tente novamente ou escreva para contato@engeprice.com.br.",
+    "photoEnable": "Ver retrato de {name} em cores",
+    "photoDisable": "Voltar ao retrato de {name} em preto e branco",
+    "readAnswer": "Ler resposta",
+    "closeAnswer": "Fechar resposta",
+    "showScope": "Ver escopo",
+    "hideScope": "Recolher escopo",
+    "noScriptForm": "Ative o JavaScript para testar o formulário. Para entrar em contato, utilize o e-mail institucional.",
+    "notFoundTitle": "Página não encontrada.",
+    "notFoundLink": "Voltar à Engeprice"
   },
-  "closing": [
-    "Entender a complexidade.",
-    "Estruturar os custos.",
-    "Fundamentar a decisão."
-  ]
+  "proposal": {
+    "label": "Proposta conceitual",
+    "description": "Proposta conceitual de renovação do site da Engeprice. Conteúdo e imagens sujeitos à aprovação."
+  }
 }

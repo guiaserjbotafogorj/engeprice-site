@@ -26,3 +26,7 @@
 - [ ] Newsletter: ferramenta, opt-in, comprovação de consentimento e descadastro. Por enquanto, apenas solicitação por e-mail.
 - [ ] GTM/GA4: IDs e tags sem anúncios; GSC_TOKEN se aplicável. Não foram criadas contas ou tags reais.
 - [ ] Aprovação da proposta antes de migrar domínio, DNS e indexação. Publicação atual é somente em pages.dev.
+
+## Revisão de design
+- [ ] Validar a sugestão tipográfica Archivo junto à marca.
+- [ ] Substituir as camadas de colorização conceitual por fotos originais em cores quando fornecidas. O tratamento atual está identificado no site e documentado em docs/COLORIZACAO.md.

@@ -5,7 +5,9 @@
 - Logo: https://engeprice.com.br/wp-content/uploads/2023/08/LOGO-PNG-2-768x220.png
 - Diego: https://engeprice.com.br/wp-content/uploads/2025/02/1.png
 - Renato: https://engeprice.com.br/wp-content/uploads/2025/02/2.png
-- Famílias: Heebo e Playfair Display, distribuídas pelo Google Fonts; licenças OFL acompanham os arquivos em assets/fonts.
+- Tipografia da revisão: Archivo variável, Google Fonts (https://fonts.google.com/specimen/Archivo). Licença OFL em assets/fonts/Archivo-OFL.txt. Heebo e Playfair Display eram usadas na primeira proposta e foram substituídas.
+- Colorização conceitual dos retratos por ImageGen, com originais preservados: docs/COLORIZACAO.md.
+- Crédito de desenvolvimento: https://botafogo.guiaserj.com.br/sites (HTTP 200 na revisão).
 - API preparada para envio em lote: https://resend.com/docs/api-reference/emails/send-batch-emails
 
 O briefing fornecido pelo usuário complementa as fontes. Os valores divergentes não foram reconciliados por suposição. Não há imagens de banco, depoimentos, números, certificações da empresa ou clientes inventados. Fotos públicas não substituem confirmação de direito de uso para produção.

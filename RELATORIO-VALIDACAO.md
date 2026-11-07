@@ -1,18 +1,23 @@
-# Validação da proposta Engeprice
+# Revisão da proposta Engeprice — 07/11/2026
 
-Data: 07/11/2026. Publicação: https://engeprice-site.pages.dev/
+Prévia: https://engeprice-site.pages.dev/ · GitHub: https://github.com/guiaserjbotafogorj/engeprice-site
 
-## Estados de entrega
+## Resultado da revisão
 
-- Projeto local independente: `engeprice-site/`.
-- GitHub: https://github.com/guiaserjbotafogorj/engeprice-site, branch `main`.
-- Cloudflare Pages: conta `e516c1e7f49ee115f654e85e1fc1109b`, projeto `engeprice-site`, integrado ao GitHub. Build `npm run build`; saída `dist`.
-- Domínio oficial `engeprice.com.br`: não alterado. Não houve mudança de DNS, Search Console ou GA4.
-- A prévia é pública, com `noindex, nofollow` em HTML e cabeçalho. O sitemap de preview permanece vazio e o robots bloqueia rastreamento. Isso não constitui autenticação ou privacidade de acesso.
+A proposta passou por revisão de tipografia, composição, copy, imagens, navegação, acessibilidade e estados de interação. Direção e comparação com a versão anterior: `REVISAO-DESIGN.md`.
 
-## Lighthouse na URL pública
+- Archivo variável substitui Heebo e Playfair Display na interface; uma família, hospedada localmente, com pesos adequados a cada nível de informação. Branco e cinza claro substituem o creme, mantendo preto esverdeado e dourado da marca.
+- Chamadas passam a ser links textuais, sem setas, molduras ou ícones isolados. Ações de interface preservam a semântica correta de botão, com apresentação de link: menu, submissão de formulário, medição e alternância das fotos.
+- Serviços em linhas de escopo; numeração apenas na sequência de trabalho. Foram retirados índices decorativos, ícones genéricos, entradas de animação repetidas e o fechamento de três slogans.
+- Cabeçalho identifica “Proposta conceitual”. Rodapé apresenta o crédito “Desenvolvido pela Guia-se Botafogo”, com link para https://botafogo.guiaserj.com.br/sites.
+- O desenho da abertura possui legenda descritiva e informa seu caráter conceitual. Os desenhos associados aos nomes de empreendimentos foram removidos para não sugerir representação de projetos reais.
+- Legendas das fotos identificam os respectivos sócios. A colorização conceitual está informada junto à seção.
+- Fotos: hover no mouse; toque/clique alterna a cor, e Enter/Espaço operam o controle. Estado e nome acessíveis são atualizados. A cor é uma camada sobre os originais monocromáticos, preservando sua luminosidade e detalhes. Prompt e caminhos em `docs/COLORIZACAO.md`.
+- A imagem social e a página 404 acompanham o novo tratamento tipográfico; não há setas decorativas nelas.
 
-Lighthouse 13.6.0, Chrome headless isolado, perfis mobile padrão e desktop. Relatórios completos em `reports/lighthouse-public-mobile.json` e `reports/lighthouse-public-desktop.json` (incluem data/hora, configuração, métricas e achados).
+## Auditorias da revisão
+
+Lighthouse 13.6.0, Chrome headless isolado. Primeira conferência da revisão no servidor local:
 
 | Indicador | Celular | Computador |
 | --- | ---: | ---: |
@@ -20,56 +25,38 @@ Lighthouse 13.6.0, Chrome headless isolado, perfis mobile padrão e desktop. Rel
 | Acessibilidade | 100 | 100 |
 | Boas práticas | 100 | 100 |
 | SEO | 69 | 69 |
-| LCP | 1,08 s | 0,31 s |
-| CLS | 0 | 0,00029 |
-| TBT | 21 ms | 0 ms |
+| LCP | 1,10 s | 0,29 s |
+| CLS | 0 | 0 |
+| TBT | 0 ms | 0 ms |
 
-O SEO não atende ao critério numérico de 95 nesta prévia: o item reprovado é `is-crawlable`, pois a proposta não deve ser indexada. Não removemos a proteção para elevar a nota. A validação de uma produção indexável deverá ocorrer após aprovação, domínio definitivo e confirmação de dados.
+Relatórios: `reports/lighthouse-review-local-mobile.json` e `reports/lighthouse-review-local-desktop.json`. São medições de laboratório, não promessa para todo dispositivo/conexão. TBT não substitui INP; não houve medição de campo nem teste físico de iPhone.
 
-As notas são medições de laboratório, não garantia de desempenho em qualquer conexão/aparelho. INP de campo não foi medido; TBT é dado de laboratório e não substitui INP. Não houve teste físico de iPhone. A medição pública antecede apenas o versionamento de cache dos retratos e a documentação final; a composição, CSS, fontes e comportamento medidos são os mesmos.
+A nota de SEO reflete a reprovação intencional de `is-crawlable`: a proposta deve permanecer fora da indexação, com noindex no HTML/cabeçalho e bloqueio em robots.txt. O critério numérico de SEO 95 não se aplica a esta prévia bloqueada; não foi removida a proteção para elevar a nota. Não há garantia de ranking, destaque de FAQ ou citação por IA.
 
-## Funcionalidade e responsividade
+## Conferência visual e funcional
 
-- Inspeção visual de desktop e celular de 390 px.
-- Verificação de ausência de overflow horizontal em 320, 390, 768 e 1440 px.
-- Menu móvel abre, fecha ao navegar e mantém `aria-expanded` coerente. Escape implementado.
-- FAQ usa `details/summary` nativos; primeiro item foi aberto em teste no celular.
-- Um único H1, sequência semântica de títulos, `lang=pt-BR`, foco visível e suporte a `prefers-reduced-motion`.
-- Retratos com WebP, srcset, dimensões explícitas e lazy loading. Logo original preservado, versão WebP sem perda. SVG oficial não estava disponível.
-- Correção de fonte no preload eliminou o CLS relevante no desktop. Revelações usam deslocamento sem reduzir contraste de texto fora da dobra.
-- Formulário público preenchido com dados fictícios. Resultado observado: “Preenchimento validado. Nesta prévia, nenhum dado foi enviado.”
+- Abertura, serviços, retratos, perguntas, formulário e rodapé inspecionados no navegador.
+- Larguras de 320, 360, 390, 768, 1024 e 1440 px: sem overflow horizontal e sem textos/campos cortados na verificação de limites.
+- Menu: abre, fecha ao navegar e responde a Escape; `aria-expanded` acompanha o estado.
+- Fotos: ativação/desativação e rótulo acessível verificados. Hover com `aria-pressed=false` mantém a camada de cor visível apenas enquanto o ponteiro está sobre a foto. Em viewport móvel, clique/toque usa alternância persistente. A emulação de largura não substitui teste em aparelho físico.
+- FAQ: abre e fecha nativamente, com indicação textual “Ler resposta”/“Fechar resposta”.
+- Formulário: preenchido com dados fictícios; mensagem observada informa expressamente que nada foi enviado. Sem JavaScript, a submissão fica desabilitada, com orientação de contato por e-mail; evita o envio involuntário dos campos por query string.
+- Medição: preferências abrem, podem ser recusadas e fecham corretamente. GTM/GA4 continuam sem configuração real.
+- Um H1, foco visível, skip link, rótulos explícitos dos campos, botões nativos para ações e `prefers-reduced-motion`.
 
-## Testes automatizados
+## Verificações automatizadas
 
-`node --test scripts/*.test.mjs`: **8 testes aprovados**.
+`node --test scripts/*.test.mjs`: **9 testes aprovados**.
 
-Cobertura: origem externa, campos obrigatórios/opções, consentimento, e-mail, honeypot, limite de corpo, falha fechada sem configuração, bloqueio por rate limit, geração de mensagem interna e confirmação com provedor simulado, eventos sem dados pessoais, consentimento de medição, UTMs de sessão e ausência de envio/lead na demonstração.
+Cobrem consentimento/eventos de contato, persistência de UTMs, ausência de PII no dataLayer, ausência de envio na demonstração, estado/rótulo da colorização, validação no servidor, origem externa, honeypot, limite de corpo, rate limit e mensagens de e-mail com provedor simulado. Não foi realizado envio real.
 
-Eventos testados em ambiente simulado: `cta_click`, `click_email`, `click_linkedin_socio`, `generate_lead`, `click_phone`, `click_whatsapp`. Telefone e WhatsApp não aparecem na prévia por falta de confirmação; os testes desses canais validam a infraestrutura opcional, não cliques em controles atualmente publicados. Não há GTM/GA4 real configurado.
+`scripts/check-content.mjs`: JSON-LD com `ProfessionalService`, dois `Person`, `OfferCatalog` e sete respostas de `FAQPage` correspondentes ao conteúdo; âncoras com alvo, ativos existentes, dois controles de foto, crédito correto, ausência de setas decorativas e de marcadores de confirmação. Resultado em `reports/content-check.json`. Validação local de estrutura/sintaxe não equivale à aprovação externa de Schema.org ou Google.
 
-**Envio real e confirmação automática real não foram testados nem habilitados.** Dependem de provedor, domínio remetente, segredos, rate limiter durável e validação de privacidade. O teste do provedor é simulado e não dispara e-mail.
+## Links e limites preservados
 
-## SEO, AEO, GEO e JSON-LD
-
-- Title, description, canonical da prévia, Open Graph, Twitter Card, favicon e imagem social.
-- Texto principal no HTML, sem depender de execução de JavaScript.
-- JSON-LD com `ProfessionalService`, dois `Person`, `OfferCatalog`/serviços e `FAQPage` com sete respostas equivalentes ao texto visível.
-- Sintaxe e estrutura verificadas localmente, com correspondência integral do FAQ. Relatório: `reports/content-check.json`.
-- NAP divergente não foi presumido: endereço e telefone foram omitidos; a configuração única prepara sua inclusão consistente no HTML e JSON-LD após confirmação.
-- `npm run check:placeholders` aprovado; nenhum `[CONFIRMAR]` no HTML de entrega. Marcadores existem apenas na configuração de pendências.
-- `llms.txt` descreve o caráter de prévia e identifica o site oficial.
-
-Não houve validação externa pelo Schema.org Validator ou Google Rich Results Test. Não se afirma aprovação de rich results, ranking, indexação, citação por IA ou posicionamento no Maps. A marcação FAQ é descritiva e não pressupõe elegibilidade a resultado destacado.
-
-## Links verificados
-
-- Home, robots.txt, sitemap.xml, llms.txt e imagem social: HTTP 200 na URL pública.
-- Todos os hrefs de âncoras possuem alvo; todos os ativos locais referenciados existem.
-- Instagram: HTTP 200; resposta não equivale a autenticação da titularidade do perfil.
-- LinkedIn do Diego: HTTP 999; LinkedIn da empresa: HTTP 403. Ambos restringiram o verificador automatizado e continuam pendentes de abertura autenticada. URLs foram preservadas conforme o briefing/site atual.
-- E-mail: link `mailto`, sem teste de entrega.
-- Relatório técnico dos links: `reports/http-links.json`.
-
-## Aprovações e integrações pendentes
-
-Consultar `TODO-CONFIRMAR.md`: manual e grafia da marca, dados divergentes, currículos, processo proposto de quatro etapas, direitos de fotos e referências de obras, LinkedIn de Renato, logos, privacidade definitiva e integrações de envio/medição. Nenhum número ou depoimento foi inventado. A newsletter está representada por solicitação de cadastro via e-mail, sem inscrição automática.
+- Crédito da Guia-se Botafogo: HTTP 200 na revisão.
+- LinkedIn do Diego e da empresa: as restrições do verificador anterior (999/403) não foram interpretadas como links quebrados. Verificação autenticada continua pendente; o LinkedIn do Renato não foi inventado.
+- Endereço, telefone e volume orçado divergentes continuam omitidos. Valores centralizados em `site.config.json`.
+- Formulário e newsletter são demonstrativos; integração de envio, provedor, rate limit durável e privacidade definitiva dependem de configuração/validação. Nenhum e-mail foi disparado.
+- O fluxo de trabalho é identificado como proposta a ser validada com os sócios. Currículos, referências de obras, direitos de imagem e cores originais permanecem sujeitos à aprovação.
+- O domínio oficial, DNS, Search Console e GA4 não foram alterados. Publicação restrita à prévia pages.dev, conectada à branch main.

@@ -40,6 +40,17 @@ if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduc
  },{threshold:.35});
  document.querySelectorAll('svg[data-drawing]').forEach(svg=>drawingObserver.observe(svg));
 }
+// Animate once on entry without hiding content or changing document layout.
+if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+ const motionObserver=new IntersectionObserver(entries=>{
+  for(const entry of entries)if(entry.isIntersecting){
+   entry.target.classList.add('has-entered');
+   motionObserver.unobserve(entry.target);
+  }
+ },{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+ const motionTargets=document.querySelectorAll('.section-head, .intro > div, .service-row, .process-lead, .process-list li, .client-logos, .partner-copy, .tool-group, .budget-method, .faq-list details, .contact-copy, .contact-form, .google-profile-copy, .google-profile iframe, .footer-main');
+ for(const target of motionTargets){target.classList.add('scroll-entry');motionObserver.observe(target);}
+}
 // Keep text readable throughout; scrolling only adds a small spatial entrance.
 if('IntersectionObserver' in window){
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');

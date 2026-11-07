@@ -130,7 +130,7 @@ details[open] > summary .when-open { display: inline; }
 .portrait-toggle { position: relative; display: block; width: 100%; padding: 0; overflow: hidden; border: 0; background: #c5c7c4; isolation: isolate; cursor: pointer; }
 .portrait-original { width: 100%; aspect-ratio: 1; object-fit: cover; }
 .portrait-color { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: color; opacity: 0; transition: opacity .45s ease; pointer-events: none; }
-.portrait-toggle.is-color .portrait-color { opacity: 1; }
+.portrait-toggle.is-color .portrait-color, .portrait-toggle.is-scroll-color .portrait-color { opacity: 1; }
 @media (hover: hover) and (pointer: fine) {
   .portrait-toggle:hover .portrait-color { opacity: 1; }
 }
@@ -198,9 +198,18 @@ details[open] > summary .when-open { display: inline; }
 .cookie-banner button { font-size: 13px; }
 
 .closing { padding-top: 0; background: var(--paper); }
-.closing p { padding: 18px 0; border-top: 1px solid #0b151726; font-size: clamp(30px, 5.3vw, 76px); line-height: 1.3; letter-spacing: -.04em; font-weight: 500; }
+.closing p { padding: 18px 0; border-top: 1px solid #0b151726; font-size: clamp(28px, 3vw, 44px); line-height: 1.3; letter-spacing: -.04em; font-weight: 500; }
 .closing p:nth-child(2) { color: #5e6a64; }
 .closing p:last-child { color: #8b6814; }
+@media (prefers-reduced-motion: no-preference) {
+  .closing.is-scroll-ready p { transform: translateX(16px); transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+  .closing.is-scroll-ready p.is-in-view { transform: translateX(0); }
+  @media (max-width: 600px) {
+    .closing.is-scroll-ready p { transform: translateY(10px); }
+    .closing.is-scroll-ready p.is-in-view { transform: translateY(0); }
+    .portrait-color { transition-duration: .8s; }
+  }
+}
 /* The diagrams are constructed once, as they enter the reading viewport. */
 .drawing-ready [data-drawing] .draw-lines path { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .drawing-ready [data-drawing].is-drawing .draw-lines path { animation: construct 12s linear both; }

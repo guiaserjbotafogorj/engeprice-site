@@ -40,6 +40,26 @@ if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduc
  },{threshold:.35});
  document.querySelectorAll('svg[data-drawing]').forEach(svg=>drawingObserver.observe(svg));
 }
+// Keep text readable throughout; scrolling only adds a small spatial entrance.
+if('IntersectionObserver' in window){
+ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+ const closing=document.querySelector('.closing');
+ if(closing&&!reducedMotion.matches){
+  closing.classList.add('is-scroll-ready');
+  const phraseObserver=new IntersectionObserver(entries=>{
+   for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('is-in-view');phraseObserver.unobserve(entry.target);}
+  },{threshold:.7,rootMargin:'0px 0px -8% 0px'});
+  closing.querySelectorAll('p').forEach(p=>phraseObserver.observe(p));
+ }
+ const mobilePortrait=matchMedia('(max-width: 600px)');
+ const portraitObserver=new IntersectionObserver(entries=>{
+  for(const entry of entries)entry.target.classList.toggle('is-scroll-color',mobilePortrait.matches&&entry.isIntersecting);
+ },{threshold:.35,rootMargin:'-15% 0px -15% 0px'});
+ document.querySelectorAll('.portrait-toggle').forEach(p=>portraitObserver.observe(p));
+ mobilePortrait.addEventListener('change',()=>{
+  document.querySelectorAll('.portrait-toggle').forEach(p=>{p.classList.remove('is-scroll-color');portraitObserver.unobserve(p);portraitObserver.observe(p);});
+ });
+}
 // Mouse hover is temporary. A tap/click or keyboard activation toggles a persistent state.
 for(const portrait of document.querySelectorAll('.portrait-toggle')){
   portrait.addEventListener('click',()=>{

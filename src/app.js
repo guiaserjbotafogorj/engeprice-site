@@ -23,10 +23,21 @@ document.addEventListener('click',event=>{const a=event.target.closest('[data-ev
 const params=new URLSearchParams(location.search);
 const utmKeys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
 for(const key of utmKeys){const value=params.get(key);if(value)store.set('ep-'+key,value.slice(0,300),true);}
-// Draw once, at reading pace, when the illustration becomes visible.
+// A shared 12-second clock keeps every path and each visible row in sync.
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
  document.documentElement.classList.add('drawing-ready');
- const drawingObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('is-drawing');drawingObserver.unobserve(entry.target);}}},{threshold:.35});
+ const startDrawing=svg=>{svg.classList.add('is-drawing');drawingObserver.unobserve(svg);};
+ const drawingObserver=new IntersectionObserver(entries=>{
+  for(const entry of entries){
+   if(!entry.isIntersecting)continue;
+   const svg=entry.target, list=svg.closest('.project-list');
+   if(!list){startDrawing(svg);continue;}
+   const rowTop=svg.getBoundingClientRect().top;
+   for(const peer of list.querySelectorAll('svg[data-drawing]')){
+    if(Math.abs(peer.getBoundingClientRect().top-rowTop)<4)startDrawing(peer);
+   }
+  }
+ },{threshold:.35});
  document.querySelectorAll('svg[data-drawing]').forEach(svg=>drawingObserver.observe(svg));
 }
 // Mouse hover is temporary. A tap/click or keyboard activation toggles a persistent state.

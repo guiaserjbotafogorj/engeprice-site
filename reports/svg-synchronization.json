@@ -1,0 +1,61 @@
+{
+  "drawings": [
+    {
+      "connectedStrokes": true,
+      "delays": [
+        "0s"
+      ],
+      "durations": [
+        "12s"
+      ],
+      "offsets": [
+        "0.978886px"
+      ],
+      "paths": 56,
+      "top": 218
+    },
+    {
+      "connectedStrokes": true,
+      "delays": [
+        "0s"
+      ],
+      "durations": [
+        "12s"
+      ],
+      "offsets": [
+        "0.978886px"
+      ],
+      "paths": 5,
+      "top": 218
+    },
+    {
+      "connectedStrokes": true,
+      "delays": [
+        "0s"
+      ],
+      "durations": [
+        "12s"
+      ],
+      "offsets": [
+        "0.978886px"
+      ],
+      "paths": 11,
+      "top": 218
+    },
+    {
+      "connectedStrokes": true,
+      "delays": [
+        "0s"
+      ],
+      "durations": [
+        "12s"
+      ],
+      "offsets": [
+        "0.978886px"
+      ],
+      "paths": 15,
+      "top": 218
+    }
+  ],
+  "sharedProgress": true
+}

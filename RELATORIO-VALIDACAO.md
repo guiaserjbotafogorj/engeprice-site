@@ -6,9 +6,9 @@ Prévia: https://engeprice-site.pages.dev/ · GitHub: https://github.com/guiaser
 
 A proposta passou por revisão de tipografia, composição, copy, imagens, navegação, acessibilidade e estados de interação. Direção e comparação com a versão anterior: `REVISAO-DESIGN.md`.
 
-- Archivo variável substitui Heebo e Playfair Display na interface; uma família, hospedada localmente, com pesos adequados a cada nível de informação. Branco e cinza claro substituem o creme, mantendo preto esverdeado e dourado da marca.
+- Archivo variável substitui Heebo e Playfair Display na interface; uma família, hospedada localmente, com pesos adequados a cada nível de informação. A composição e a paleta da primeira versão são a base, com papel claro, preto esverdeado e presença do dourado.
 - Chamadas passam a ser links textuais, sem setas, molduras ou ícones isolados. Ações de interface preservam a semântica correta de botão, com apresentação de link: menu, submissão de formulário, medição e alternância das fotos.
-- Serviços em linhas de escopo; numeração apenas na sequência de trabalho. Foram retirados índices decorativos, ícones genéricos, entradas de animação repetidas e o fechamento de três slogans.
+- Serviços em linhas de escopo; numeração apenas na sequência de trabalho. Foram retirados índices decorativos, ícones genéricos e entradas de animação repetidas. A composição editorial original e as frases de foco foram preservadas.
 - Cabeçalho identifica “Proposta conceitual”. Rodapé apresenta o crédito “Desenvolvido pela Guia-se Botafogo”, com link para https://botafogo.guiaserj.com.br/sites.
 - O desenho da abertura possui legenda descritiva e informa seu caráter conceitual. Os SVGs da experiência foram preservados, com legendas de ilustração conceitual dos setores e nota que os distingue de desenhos dos empreendimentos reais.
 - Legendas das fotos identificam os respectivos sócios. A colorização conceitual está informada junto à seção.
@@ -17,7 +17,7 @@ A proposta passou por revisão de tipografia, composição, copy, imagens, naveg
 - Bases de preços e plataformas em grupos próprios, com planilha conceitual de orçamento e fórmula de somatória dos custos.
 - Seis marcas recuperadas do site atual em uma faixa de clientes e instituições; Odebrecht identificada como referência histórica. Origem documentada em `docs/GOOGLE-E-CLIENTES.md`.
 - Perfil correto do Google identificado pelo site oficial informado na ficha. Iframe oficial incorporado, com link para a ficha, reserva de espaço e lazy loading. NAP próprio permanece pendente.
-- Os SVGs agora têm 12 segundos de traçado e defasagem de 0,28 segundo entre partes; observação de entrada em viewport inicia cada desenho uma vez. Em teste, offsets de 0,99 passaram a 0 ao concluir, com `animation-duration: 12s`.
+- Os SVGs têm 12 segundos de traçado, sem atrasos individuais. Subcaminhos conectados foram normalizados separadamente. Desenhos da mesma fileira iniciam juntos. Em verificação no navegador, todos os traços dos quatro projetos tinham `animation-duration: 12s`, atraso `0s` e progresso idêntico. Evidência: `reports/svg-synchronization.json`.
 
 ## Auditorias da revisão
 
@@ -29,9 +29,9 @@ Lighthouse 13.6.0, Chrome headless isolado. Conferência local da revisão com c
 | Acessibilidade | 100 | 100 |
 | Boas práticas | 100 | 100 |
 | SEO | 69 | 69 |
-| LCP | 1,12 s | 0,30 s |
+| LCP | 1,26 s | 0,29 s |
 | CLS | 0 | 0 |
-| TBT | 19 ms | 0 ms |
+| TBT | 7 ms | 0 ms |
 
 Relatórios: `reports/lighthouse-review-local-mobile.json` e `reports/lighthouse-review-local-desktop.json`. São medições de laboratório, não promessa para todo dispositivo/conexão. TBT não substitui INP; não houve medição de campo nem teste físico de iPhone.
 

@@ -64,20 +64,20 @@ function header() {
 }
 function hero() {
   return `<section class="hero" id="inicio">
-    <div class="hero-top"><div class="hero-copy">${label(c.hero.eyebrow)}<h1>${e(c.hero.title)}</h1><p class="hero-description">${e(c.hero.description)}</p><div class="hero-actions">${contactLink(c.hero.primary, 'hero', 'primary-link')}<a class="text-link" href="#servicos">${e(c.hero.secondary)}</a></div></div>
-    <figure class="hero-drawing">${structure()}<figcaption>${e(c.hero.drawingLabel)}</figcaption></figure></div>
+    <div class="hero-top"><div class="hero-copy">${label(c.hero.eyebrow)}<h1>${e(c.hero.title)} <span class="hero-accent">${e(c.hero.accent).replace('grande porte.', '<span class="keep-together">grande porte.</span>')}</span></h1><p class="hero-description">${e(c.hero.description)}</p><div class="hero-actions">${contactLink(c.hero.primary, 'hero', 'primary-link')}<a class="text-link" href="#servicos">${e(c.hero.secondary)}</a></div></div>
+    <figure class="hero-drawing"><p class="drawing-heading">${e(c.hero.drawingTitle)}</p>${structure()}<figcaption>${e(c.hero.drawingLabel)}</figcaption></figure></div>
     <ul class="hero-pillars">${c.hero.pillars.map(item => `<li>${e(item)}</li>`).join('')}</ul>
   </section>`;
 }
 function intro() {
-  return `<section id="visao" class="intro section"><div>${label(c.intro.eyebrow)}<h2>${e(c.intro.title)}</h2></div><div class="intro-text"><p>${e(c.intro.description)}</p><p class="muted">${e(c.intro.note)}</p></div></section>`;
+  return `<section id="visao" class="intro section"><div>${label(c.intro.eyebrow)}<h2>${nl(c.intro.title)}</h2></div><div class="intro-text"><p>${e(c.intro.description)}</p><p class="muted">${e(c.intro.note)}</p></div></section>`;
 }
 function services() {
   return `<section id="servicos" class="services section">${heading(c.services)}<div class="service-list">${c.services.cards.map((service, i) => `<article class="service-row"><div class="service-title"><p class="service-stage">${e(service.stage)}</p><h3>${e(service.title)}</h3></div><div class="service-description"><p>${e(service.description)}</p><p class="audience">${e(service.audience)}</p>${contactLink(service.link, 'servico-'+i)}</div><ul>${service.items.map(item => `<li>${e(item)}</li>`).join('')}</ul></article>`).join('')}</div>
     <details class="scope"><summary>${e(c.services.expand)}${disclosure(c.ui.showScope, c.ui.hideScope)}</summary><ul>${c.services.full.map(item => `<li>${e(item)}</li>`).join('')}</ul></details></section>`;
 }
 function processSection() {
-  return `<section class="process section"><div class="process-lead">${label(c.process.eyebrow)}<h2>${e(c.process.title)}</h2><p>${e(c.process.description)}</p></div><ol class="process-list">${c.process.steps.map(item => `<li><h3>${e(item.title)}</h3><p>${e(item.text)}</p></li>`).join('')}</ol></section>`;
+  return `<section class="process section"><div class="process-lead">${label(c.process.eyebrow)}<h2>${nl(c.process.title)}</h2><p>${e(c.process.description)}</p></div><ol class="process-list">${c.process.steps.map(item => `<li><h3>${e(item.title)}</h3><p>${e(item.text)}</p></li>`).join('')}</ol></section>`;
 }
 function experience() {
   return `<section id="experiencia" class="experience section">${heading(c.experience)}<p class="illustration-note">${e(c.experience.illustrationNote)}</p><div class="project-list">${c.experience.projects.map(project => `<article class="project"><figure class="project-illustration"><div class="project-drawing">${structure(project.illustration)}</div><figcaption>${e(project.illustrationCaption)}</figcaption></figure><div><h3>${e(project.name)}</h3></div><p>${e(project.text)}</p></article>`).join('')}</div><ul class="segment-list">${c.experience.segments.map(item => `<li>${e(item)}</li>`).join('')}</ul></section>`;
@@ -97,14 +97,17 @@ function googleBusiness() {
   return `<section class="google-profile section" id="perfil-google"><div class="google-profile-copy">${label(c.google.eyebrow)}<h2>${e(c.google.title)}</h2><p>${e(c.google.description)}</p><a class="text-link" href="${e(config.googleBusiness.profileUrl)}" target="_blank" rel="noopener noreferrer">${e(c.google.link)}</a><p class="map-source">${e(c.google.sourceNote)}</p></div><iframe src="${e(config.googleBusiness.embedUrl)}" title="${e(c.google.mapTitle)}" width="600" height="420" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></section>`;
 }
 function faq() {
-  return `<section id="perguntas" class="faq section"><div>${label(c.faq.eyebrow)}<h2>${e(c.faq.title)}</h2></div><div class="faq-list">${c.faq.items.map(item => `<details><summary><span>${e(item.q)}</span>${disclosure(c.ui.readAnswer, c.ui.closeAnswer)}</summary><p>${e(item.a)}</p></details>`).join('')}</div></section>`;
+  return `<section id="perguntas" class="faq section"><div>${label(c.faq.eyebrow)}<h2>${nl(c.faq.title)}</h2></div><div class="faq-list">${c.faq.items.map(item => `<details><summary><span>${e(item.q)}</span>${disclosure(c.ui.readAnswer, c.ui.closeAnswer)}</summary><p>${e(item.a)}</p></details>`).join('')}</div></section>`;
 }
 function confirmedContact() {
   return `${config.phone ? `<div class="optional-contact">${label(c.contact.phoneLabel)}<a class="text-link" href="tel:${e(config.phone.replace(/[^+0-9]/g, ''))}" data-event="click_phone">${e(config.phone)}</a>${config.whatsappEnabled ? `<a class="text-link" href="https://wa.me/${e(config.phone.replace(/[^0-9]/g, ''))}" target="_blank" rel="noopener noreferrer" data-event="click_whatsapp">${e(c.contact.whatsappLabel)}</a>` : ''}</div>` : ''}${addressText ? `<div class="optional-contact">${label(c.contact.addressLabel)}<p>${e(addressText)}</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(addressText)}" target="_blank" rel="noopener noreferrer">${e(c.contact.mapLabel)}</a></div>` : ''}`;
 }
+function closing() {
+  return `<section class="closing section" aria-label="Foco da consultoria">${c.closing.map(line => `<p>${e(line)}</p>`).join('')}</section>`;
+}
 function contact() {
   const privacyText = endpoint ? c.contact.privacyProduction : c.contact.privacy;
-  return `<section id="contato" class="contact section"><div class="contact-copy">${label(c.contact.eyebrow)}<h2>${e(c.contact.title)}</h2><p>${e(c.contact.description)}</p><p class="muted">${e(c.contact.audience)}</p><div class="contact-direct">${label(c.contact.emailLabel)}<a class="text-link" href="mailto:${e(config.email)}" data-event="click_email">${e(config.email)}</a><p>${e(c.contact.locationLabel)}</p>${confirmedContact()}</div></div>
+  return `<section id="contato" class="contact section"><div class="contact-copy">${label(c.contact.eyebrow)}<h2>${nl(c.contact.title)}</h2><p>${e(c.contact.description)}</p><p class="muted">${e(c.contact.audience)}</p><div class="contact-direct">${label(c.contact.emailLabel)}<a class="text-link" href="mailto:${e(config.email)}" data-event="click_email">${e(config.email)}</a><p>${e(c.contact.locationLabel)}</p>${confirmedContact()}</div></div>
     <form id="contact-form" class="contact-form" method="post" action="/api/contact"><p class="form-notice">${e(endpoint ? c.ui.required : c.contact.previewNotice)}</p><div class="form-grid">${input('name', 'text', 'autocomplete="name"')}${input('company', 'text', 'autocomplete="organization"')}${input('role', 'text', 'autocomplete="organization-title"')}${input('email', 'email', 'autocomplete="email"')}${select('demand', c.ui.demandOptions)}${select('phase', c.ui.phaseOptions)}${select('type', c.ui.typeOptions)}${input('size', 'text', `placeholder="${e(c.ui.sizePlaceholder)}"`)}</div>
     <div class="field message-field"><label for="field-message">${e(fields.message)}</label><textarea id="field-message" name="message" rows="4" required minlength="20" maxlength="5000" placeholder="${e(c.ui.messagePlaceholder)}"></textarea></div>
     <label class="honey" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div class="consent"><input id="privacy-consent" type="checkbox" name="privacy" required><div><label for="privacy-consent">${e(privacyText)}</label> <a href="#privacidade">${e(c.footer.privacy)}</a>.</div></div>
@@ -123,7 +126,7 @@ const html = `<!doctype html><html lang="pt-BR"><head>
 <meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:title" content="${e(c.meta.title)}"><meta property="og:description" content="${e(c.meta.description)}"><meta property="og:url" content="${url}/"><meta property="og:image" content="${url}/assets/social-card.png?v=${socialVersion}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${e(c.meta.socialAlt)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${e(c.meta.title)}"><meta name="twitter:description" content="${e(c.meta.description)}"><meta name="twitter:image" content="${url}/assets/social-card.png?v=${socialVersion}">
 ${env.GSC_TOKEN ? `<meta name="google-site-verification" content="${e(env.GSC_TOKEN)}">` : ''}<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="/assets/fonts/archivo-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>${await readFile('src/style.css', 'utf8')}</style><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script><script id="site-data" type="application/json">${JSON.stringify(clientConfig).replace(/</g, '\\u003c')}</script><script src="/app.js" defer></script>
-</head><body>${header()}<main id="conteudo" tabindex="-1">${hero()}${intro()}${services()}${processSection()}${experience()}${clients()}${partners()}${tools()}${faq()}${contact()}${googleBusiness()}</main>${footer()}</body></html>`;
+</head><body>${header()}<main id="conteudo" tabindex="-1">${hero()}${intro()}${services()}${processSection()}${experience()}${clients()}${partners()}${tools()}${faq()}${closing()}${contact()}${googleBusiness()}</main>${footer()}</body></html>`;
 
 await mkdir('dist', {recursive:true});
 await writeFile('dist/index.html', html);

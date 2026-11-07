@@ -24,7 +24,7 @@
   ],
   "hero": {
     "eyebrow": "Consultoria em engenharia de custos",
-    "title": "Engenharia de custos para obras de grande porte.",
+    "title": "Engenharia de custos para",
     "description": "Estimativas, orçamentos executivos e apoio técnico em pleitos. Consultoria conduzida pelos sócios para as decisões de investimento, execução e gestão contratual.",
     "primary": "Fale com a Engeprice",
     "secondary": "Conheça os serviços",
@@ -33,11 +33,13 @@
       "Atuação direta dos sócios",
       "Da viabilidade à gestão contratual"
     ],
-    "drawingLabel": "Estudo gráfico de uma estrutura. Ilustração conceitual, sem vínculo com os empreendimentos citados."
+    "drawingLabel": "Estudo gráfico de uma estrutura. Ilustração conceitual, sem vínculo com os empreendimentos citados.",
+    "accent": "obras de grande porte.",
+    "drawingTitle": "Estudo conceitual de estrutura"
   },
   "intro": {
     "eyebrow": "A Engeprice",
-    "title": "O orçamento começa pela compreensão da obra.",
+    "title": "Obras complexas.\nFundamentos claros.",
     "description": "Projetos, métodos de execução e referências de mercado precisam conversar. A Engeprice organiza essas informações em uma estrutura de custos que considera as particularidades de cada empreendimento.",
     "note": "Consultoria sob medida para empresas, investidores e equipes de engenharia."
   },
@@ -95,7 +97,7 @@
   },
   "process": {
     "eyebrow": "Forma de trabalho",
-    "title": "Primeiro, entender o contexto.",
+    "title": "Entender. Estruturar.\nFundamentar.",
     "description": "A proposta de atendimento parte de uma conversa técnica para definir o escopo, as informações necessárias e as entregas. Este fluxo será validado com os sócios.",
     "steps": [
       {
@@ -118,7 +120,7 @@
   },
   "experience": {
     "eyebrow": "Experiência",
-    "title": "Obras que integram a trajetória dos sócios.",
+    "title": "Repertório construído\nem grandes desafios.",
     "description": "Atuação profissional em empreendimentos de infraestrutura, indústria e energia. As referências descrevem a experiência dos fundadores, e não um portfólio de contratos da Engeprice.",
     "projects": [
       {
@@ -159,7 +161,7 @@
   },
   "partners": {
     "eyebrow": "Sócios",
-    "title": "Quem está à frente do trabalho.",
+    "title": "A experiência tem nome.\nE participa do trabalho.",
     "description": "Formação e experiência de Diego Borges e Renato Carvalhal.",
     "people": [
       {
@@ -267,7 +269,7 @@
   },
   "faq": {
     "eyebrow": "Perguntas frequentes",
-    "title": "Antes de conversar com a equipe.",
+    "title": "Clareza antes\nda primeira conversa.",
     "items": [
       {
         "q": "O que é engenharia de custos?",
@@ -301,7 +303,7 @@
   },
   "contact": {
     "eyebrow": "Contato",
-    "title": "Conte o contexto do seu empreendimento.",
+    "title": "Todo projeto começa\ncom uma boa pergunta.",
     "description": "Informe o tipo de demanda, a fase e o porte da obra. Essas informações ajudam a preparar a conversa técnica.",
     "audience": "Atendimento voltado a empresas, investidores e equipes responsáveis por empreendimentos de engenharia.",
     "emailLabel": "Contato por e-mail",
@@ -443,5 +445,10 @@
     "link": "Ver perfil da empresa no Google",
     "mapTitle": "Perfil e localização da Engeprice Consulting no Google Maps",
     "sourceNote": "Localização e informações exibidas pelo Google."
-  }
+  },
+  "closing": [
+    "Entender a complexidade.",
+    "Estruturar os custos.",
+    "Fundamentar a decisão."
+  ]
 }
